@@ -4,7 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!--  Service Beans -->
-
+	<bean id="userService" class="com.cop.service.UserServiceImpl">
+		<constructor-arg ref="systemDao"/>
+	</bean>
 
 	<!--<bean id="customerService" class="com.virtualpairprogrammers.services.customers.CustomerManagementServiceProductionImpl">-->
 		<!--<constructor-arg ref="customerDao"/>-->

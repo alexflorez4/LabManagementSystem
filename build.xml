@@ -1,4 +1,4 @@
-<project name="FAULMS" default="BuildAll">
+<project name="FAU LMS" default="BuildAll">
     
     <property name="bin" value="./bin"/>
     <property name="lib" value="./lib"/>

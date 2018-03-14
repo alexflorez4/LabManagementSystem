@@ -7,5 +7,62 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/jstl.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/log4j.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/hsqldb.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/standard.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/junit-4.11.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/antlr-2.7.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/dom4j-1.6.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/javax.inject.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/hessian-4.0.37.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/aopalliance-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/slf4j-api-1.6.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/commons-pool-1.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/hamcrest-core-1.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/javax.servlet-api.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/commons-dbcp-1.2.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/jackson-core-2.4.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/javassist-3.15.0-GA.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/commons-logging-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/aspectjweaver-1.8.0.M1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/jackson-databind-2.4.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/jboss-logging-3.1.0.GA.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-tx-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-aop-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-jms-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-orm-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-oxm-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-web-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/jackson-annotations-2.4.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-core-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-jdbc-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-test-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/hibernate-core-4.1.4.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-beans-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-webmvc-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-aspects-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-context-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/hibernate-ehcache-4.1.4.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-messaging-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-websocket-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-expression-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-instrument-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-framework-bom-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/hibernate-entitymanager-4.1.4.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-webmvc-portlet-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-context-support-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/spring-instrument-tomcat-4.0.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/hibernate-commons-annotations-4.0.1.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../CRMSystemWebServices/lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
