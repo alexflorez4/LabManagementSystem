@@ -5,7 +5,7 @@
     <property name="src" value="./src"/> 
     <property name="dist" value="./dist"/>
 	
-    <property name="warfile" value="${dist}/FAULMS.war"/>
+    <property name="warfile" value="${dist}/faulms.war"/>
     <property name="html" value="./web"/>
 	
     <property name="tomcat.webapps.dir" value="../tomcat/webapps"/>	     

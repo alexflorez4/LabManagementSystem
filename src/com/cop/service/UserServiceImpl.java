@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String authenticateUser(UserModel user) {
-        System.out.println(user.getId() + " - " +  user.getPassword());
-        return "user authenticated.";
+    public UserModel authenticateUser(UserModel user) throws SystemCheckedException{
+        UserModel userResult = systemDAO.authenticateUserDao(user);
+        return new UserModel(userResult.getName(), userResult.getType());
     }
 }

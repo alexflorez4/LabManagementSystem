@@ -7,5 +7,5 @@ public interface UserService {
 
     public void createUser(UserModel user)  throws SystemCheckedException;
 
-    public String authenticateUser(UserModel user);
+    public UserModel authenticateUser(UserModel user) throws SystemCheckedException;
 }
