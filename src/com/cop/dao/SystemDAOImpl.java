@@ -1,5 +1,6 @@
 package com.cop.dao;
 
+import com.cop.model.LabDetailsModel;
 import com.cop.model.UserModel;
 
 import javax.persistence.EntityManager;
@@ -38,5 +39,12 @@ public class SystemDAOImpl implements SystemDAO {
         }catch (NoResultException re){
             throw new SystemCheckedException("User id or password is incorrect");
         }
+    }
+
+    @Override
+    public String addLabDao(LabDetailsModel lab) throws SystemCheckedException {
+
+        em.persist(lab);
+        return "Lab added successfully";
     }
 }

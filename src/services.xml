@@ -8,6 +8,10 @@
 		<constructor-arg ref="systemDao"/>
 	</bean>
 
+	<bean id="labService" class="com.cop.service.LabServiceImpl">
+		<constructor-arg ref="systemDao"/>
+	</bean>
+
 	<!--<bean id="customerService" class="com.virtualpairprogrammers.services.customers.CustomerManagementServiceProductionImpl">-->
 		<!--<constructor-arg ref="customerDao"/>-->
 	<!--</bean>-->
