@@ -7,6 +7,8 @@ import com.cop.model.UserModel;
 
 public interface LabService {
 
-    public String addLabService(String type, LabDetailsModel lab) throws SystemCheckedException;
+    public boolean addLabService(String type, LabDetailsModel lab) throws SystemCheckedException;
+
+    public boolean deleteLabService(String userType, Integer labId) throws SystemCheckedException;
 
 }

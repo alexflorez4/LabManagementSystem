@@ -5,7 +5,7 @@ import com.cop.model.UserModel;
 
 public interface UserService {
 
-    public void createUser(UserModel user)  throws SystemCheckedException;
+    public boolean createUser(UserModel user)  throws SystemCheckedException;
 
     public UserModel authenticateUser(UserModel user) throws SystemCheckedException;
 }

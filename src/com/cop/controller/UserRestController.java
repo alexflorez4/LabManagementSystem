@@ -27,8 +27,8 @@ public class UserRestController {
 
 
     @RequestMapping({"/create/{name}/{password}/{type}"})
-    public void createUser(@PathVariable String name, @PathVariable String password, @PathVariable String type) throws SystemCheckedException {
-        userService.createUser(new UserModel(name,type,password));
+    public boolean createUser(@PathVariable String name, @PathVariable String password, @PathVariable String type) throws SystemCheckedException {
+        return userService.createUser(new UserModel(name,type,password));
     }
 
     @RequestMapping({"/user/{id}/{password}"})
@@ -36,15 +36,15 @@ public class UserRestController {
         return this.userService.authenticateUser(new UserModel(id, password));
     }
 
-    @RequestMapping({"/addlab/{type}/{name}/{location}/{accommodations}"})
-    public String addLabController(@PathVariable String type, @PathVariable String name, @PathVariable String location, @PathVariable String accommodations)
+    @RequestMapping({"/addlab/{userType}/{name}/{location}/{accommodations}"})
+    public boolean addLabController(@PathVariable String userType, @PathVariable String name, @PathVariable String location, @PathVariable String accommodations)
             throws SystemCheckedException{
 
         if(StringUtils.isBlank(name) || StringUtils.isBlank(location)){
             throw new SystemCheckedException("Lab name and location cannot be empty");
         }
 
-        if(StringUtil.isEmpty(type)){
+        if(StringUtil.isEmpty(userType)){
             throw new SystemCheckedException("User type cannot be empty");
         }
 
@@ -54,8 +54,15 @@ public class UserRestController {
             labAccommodations = Arrays.asList(StringUtils.split(accommodations, ","));
         }
 
-        LabDetailsModel lab = new LabDetailsModel(name, location, labAccommodations);
-        return this.labService.addLabService(type, lab);
+        LabDetailsModel lab = new LabDetailsModel(0, name, location, labAccommodations);
+        return this.labService.addLabService(userType, lab);
     }
+
+    @RequestMapping({"/deletelab/{userType}/{labId}"})
+    public boolean deleteLabController(@PathVariable String userType, @PathVariable Integer labId) throws SystemCheckedException{
+
+        return this.labService.deleteLabService(userType, labId);
+    }
+
 
 }

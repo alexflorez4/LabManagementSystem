@@ -20,8 +20,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(UserModel user) throws SystemCheckedException{
-        systemDAO.createUser(user);
+    public boolean createUser(UserModel user) throws SystemCheckedException{
+
+        if(user.getType().equalsIgnoreCase("admin") || user.getType().equalsIgnoreCase("student")){
+            return systemDAO.createUser(user);
+        }
+        else{
+            throw new SystemCheckedException("User type must be admin or student, not " + user.getType());
+        }
     }
 
     @Override

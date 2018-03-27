@@ -16,19 +16,18 @@ public class SystemDAOImpl implements SystemDAO {
     private EntityManager em;
 
     @Override
-    public void createUser(UserModel user) throws SystemCheckedException {
+    public boolean createUser(UserModel user) throws SystemCheckedException {
 
-        if(user.getType().equalsIgnoreCase("admin") || user.getType().equalsIgnoreCase("student"))
+        try{
             em.persist(user);
-        else
-            throw new SystemCheckedException("User type must be admin or student, not" + user.getType());
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public UserModel authenticateUserDao(UserModel user) throws SystemCheckedException {
-
-        System.out.println("In " + this.getClass().toString());
-        System.out.println(user.toString());
 
         try {
             Query q = em.createQuery(AUTH_USER);
@@ -42,9 +41,26 @@ public class SystemDAOImpl implements SystemDAO {
     }
 
     @Override
-    public String addLabDao(LabDetailsModel lab) throws SystemCheckedException {
+    public boolean addLabDao(LabDetailsModel lab) throws SystemCheckedException {
 
-        em.persist(lab);
-        return "Lab added successfully";
+        try{
+            em.persist(lab);
+            System.out.println("Lab has been added successfully");
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteLabDao(LabDetailsModel lab) throws SystemCheckedException {
+
+        try {
+            em.remove(lab);
+            return true;
+        }catch (NoResultException nre){
+            System.out.println("Lab " + lab.getId() + " was not found.");
+            return false;
+        }
     }
 }
