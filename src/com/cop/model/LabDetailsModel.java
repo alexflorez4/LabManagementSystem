@@ -26,13 +26,6 @@ public class LabDetailsModel {
         this.accommodations = accommodations;
     }
 
-    /*public LabDetailsModel(String name, String location, List<String> accommodations) {
-        //this.id = id;
-        this.name = name;
-        this.location = location;
-        this.accommodations = accommodations;
-    }*/
-
     public int getId() {
         return id;
     }

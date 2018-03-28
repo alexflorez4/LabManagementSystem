@@ -7,11 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 public class SystemDAOImpl implements SystemDAO {
 
     private final String AUTH_USER = "SELECT um FROM UserModel as um WHERE um.id=:userId AND um.password=:userPassword";
-
+    private final String DELETE_LAB_ACC = "DELETE FROM LABDETAILSMODEL_ACCOMMODATIONS WHERE LabDetailsModel_id = :labId";
+    private final String DELETE_LAB = "DELETE FROM LABDETAILSMODEL WHERE ID = :labId";
     @PersistenceContext
     private EntityManager em;
 
@@ -56,8 +58,24 @@ public class SystemDAOImpl implements SystemDAO {
     public boolean deleteLabDao(LabDetailsModel lab) throws SystemCheckedException {
 
         try {
-            em.remove(lab);
+            /*Query q = em.createNativeQuery(DELETE_LAB_ACC);
+            q.setParameter("labId", lab.getId());
+            q.executeUpdate();
+
+            Query q2 = em.createNativeQuery(DELETE_LAB);
+            q2.setParameter("labId", lab.getId());
+            q.executeUpdate();
+
+            Query q3 = em.createQuery("select dm from LABDETAILSMODEL dm");
+
+            List<LabDetailsModel> labs =  q3.getResultList();
+            System.out.println("Current labs: " + labs.toString());
+            return true;*/
+
+
+            em.merge(lab);
             return true;
+
         }catch (NoResultException nre){
             System.out.println("Lab " + lab.getId() + " was not found.");
             return false;
