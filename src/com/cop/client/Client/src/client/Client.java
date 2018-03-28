@@ -16,6 +16,10 @@ public class Client {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        loginPanel login = new loginPanel();
+        login.createGui();;
+        
     }
     
 }
