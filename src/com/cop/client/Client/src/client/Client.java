@@ -18,7 +18,10 @@ public class Client {
         // TODO code application logic here
         
         loginPanel login = new loginPanel();
-        login.createGui();;
+        //login.createMainLoginPanel();
+        
+        GuiAppMainPanel MainDashboad = new GuiAppMainPanel();
+        MainDashboad.CreateMainPanel();;
         
     }
     
