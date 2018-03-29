@@ -27,14 +27,14 @@ public class loginPanel {
     private JFrame mainFrame;
     private JPanel editorPanel;
     
-    public void createGui(){
+    public void createMainLoginPanel(){
         mainFrame = new JFrame("FAU LMS");
         mainFrame.setPreferredSize(new Dimension(400, 300));
         Container content = mainFrame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
         
         editorPanel = new JPanel();
-        editorPanel.add(getGUI());
+        editorPanel.add(getMainLoginPanel());
         content.add(editorPanel);
         
         mainFrame.addWindowListener(new WindowCloseManager());
@@ -42,7 +42,7 @@ public class loginPanel {
         mainFrame.setVisible(true);
     }
         
-    public JComponent getGUI() {
+    public JComponent getMainLoginPanel() {
 
         JLabel loginTitle = new JLabel("Login");
         JButton submit = new JButton ("Submit");
