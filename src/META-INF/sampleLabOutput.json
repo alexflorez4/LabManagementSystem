@@ -1,0 +1,22 @@
+[
+  {
+    "id": 10,
+    "name": "electronicsLab",
+    "location": "ee101",
+    "accommodations": [
+      "tv",
+      " pcs",
+      " boards"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "electronicsLab2",
+    "location": "ee102",
+    "accommodations": [
+      "tv",
+      " pcs",
+      " boards oscillosc"
+    ]
+  }
+]

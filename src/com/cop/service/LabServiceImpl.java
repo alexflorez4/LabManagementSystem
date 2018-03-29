@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Service
 public class LabServiceImpl implements LabService {
@@ -37,5 +39,10 @@ public class LabServiceImpl implements LabService {
         }
         LabDetailsModel ldm = new LabDetailsModel(labId, "", "", null);
         return systemDAO.deleteLabDao(ldm);
+    }
+
+    @Override
+    public List<LabDetailsModel> getAllLabs() throws SystemCheckedException {
+        return systemDAO.getAllLabs();
     }
 }

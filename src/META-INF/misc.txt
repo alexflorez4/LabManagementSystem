@@ -1,0 +1,16 @@
+createUser
+http://localhost:8080/faulms/create/Mark/mar/1/student/
+http://localhost:8080/faulms/create/Sarah/sar/2/student/
+http://localhost:8080/faulms/create/Caroline/car/3/student/
+http://localhost:8080/faulms/create/James/jam/4/admin
+
+getAllUsers
+localhost:8080/faulms/getAllUsers
+
+userLoginController
+http://localhost:8080/faulms/user/mar/1
+http://localhost:8080/faulms/user/sar/2
+
+addLabController
+http://localhost:8080/faulms/addlab/admin/electronicsLab/ee101/tv,%20pcs,%20boards
+http://localhost:8080/faulms/addlab/admin/electronicsLab2/ee102/tv,%20pcs,%20boards%20oscillosc

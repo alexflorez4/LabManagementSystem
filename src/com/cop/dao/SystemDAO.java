@@ -3,6 +3,8 @@ package com.cop.dao;
 import com.cop.model.LabDetailsModel;
 import com.cop.model.UserModel;
 
+import java.util.List;
+
 public interface SystemDAO {
 
     public boolean createUser(UserModel user) throws SystemCheckedException;
@@ -12,4 +14,8 @@ public interface SystemDAO {
     public boolean addLabDao(LabDetailsModel lab) throws SystemCheckedException;
 
     public  boolean deleteLabDao(LabDetailsModel labId) throws SystemCheckedException;
+
+    public List<UserModel> getAllUsers() throws SystemCheckedException;
+
+    public List<LabDetailsModel> getAllLabs() throws SystemCheckedException;
 }

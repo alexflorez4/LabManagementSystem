@@ -26,14 +26,14 @@ public class UserRestController {
     private LabService labService;
 
 
-    @RequestMapping({"/create/{name}/{password}/{type}"})
-    public boolean createUser(@PathVariable String name, @PathVariable String password, @PathVariable String type) throws SystemCheckedException {
-        return userService.createUser(new UserModel(name,type,password));
+    @RequestMapping({"/create/{name}/{userId}/{password}/{type}"})
+    public boolean createUser(@PathVariable String name, @PathVariable String userId, @PathVariable String password, @PathVariable String type) throws SystemCheckedException {
+        return userService.createUser(new UserModel(name,userId, type, password));
     }
 
-    @RequestMapping({"/user/{id}/{password}"})
-    public UserModel userLoginController(@PathVariable Integer id, @PathVariable String password) throws SystemCheckedException {
-        return this.userService.authenticateUser(new UserModel(id, password));
+    @RequestMapping({"/user/{userId}/{password}"})
+    public UserModel userLoginController(@PathVariable String userId, @PathVariable String password) throws SystemCheckedException {
+        return this.userService.authenticateUser(new UserModel(userId, password));
     }
 
     @RequestMapping({"/addlab/{userType}/{name}/{location}/{accommodations}"})
@@ -64,5 +64,14 @@ public class UserRestController {
         return this.labService.deleteLabService(userType, labId);
     }
 
+    @RequestMapping({"/getAllUsers"})
+    public List<UserModel> getAllUsers() throws SystemCheckedException{
+        return this.userService.getAllUsers();
+    }
+
+    @RequestMapping({"/getAllLabs"})
+    public List<LabDetailsModel> getAllLabs() throws SystemCheckedException{
+        return this.labService.getAllLabs();
+    }
 
 }

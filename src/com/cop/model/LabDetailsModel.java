@@ -50,11 +50,23 @@ public class LabDetailsModel {
         this.location = location;
     }
 
+
     public List<String> getAccommodations() {
         return accommodations;
     }
 
+
     public void setAccommodations(List<String> accommodations) {
         this.accommodations = accommodations;
+    }
+
+    @Override
+    public String toString() {
+        return "LabDetailsModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", accommodations=" + accommodations +
+                '}';
     }
 }

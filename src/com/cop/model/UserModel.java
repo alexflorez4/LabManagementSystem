@@ -1,9 +1,6 @@
 package com.cop.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class UserModel {
@@ -13,24 +10,30 @@ public class UserModel {
     private int id;
 
     private String name;
+
+    @Column(unique = true)
+    private String userId;
+
     private String type;
     private String password;
 
     public UserModel() {
     }
 
-    public UserModel(int id, String password) {
-        this.id = id;
+    public UserModel(String userId, String password) {
+        this.userId = userId;
         this.password = password;
     }
 
-    public UserModel(String name, String type) {
+    public UserModel(String name, String userId, String type) {
         this.name = name;
+        this.userId = userId;
         this.type = type;
     }
 
-    public UserModel(String name, String type, String password) {
+    public UserModel(String name, String userId, String type, String password) {
         this.name = name;
+        this.userId = userId;
         this.type = type;
         this.password = password;
     }
@@ -41,6 +44,14 @@ public class UserModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {

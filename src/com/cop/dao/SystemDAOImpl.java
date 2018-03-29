@@ -3,18 +3,17 @@ package com.cop.dao;
 import com.cop.model.LabDetailsModel;
 import com.cop.model.UserModel;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SystemDAOImpl implements SystemDAO {
 
-    private final String AUTH_USER = "SELECT um FROM UserModel as um WHERE um.id=:userId AND um.password=:userPassword";
+
     private final String DELETE_LAB_ACC = "DELETE FROM LABDETAILSMODEL_ACCOMMODATIONS WHERE LabDetailsModel_id = :labId";
     private final String DELETE_LAB = "DELETE FROM LABDETAILSMODEL WHERE ID = :labId";
-    @PersistenceContext
+
+    @PersistenceContext(type= PersistenceContextType.EXTENDED)
     private EntityManager em;
 
     @Override
@@ -32,8 +31,8 @@ public class SystemDAOImpl implements SystemDAO {
     public UserModel authenticateUserDao(UserModel user) throws SystemCheckedException {
 
         try {
-            Query q = em.createQuery(AUTH_USER);
-            q.setParameter("userId", user.getId());
+            Query q = em.createQuery("SELECT um FROM UserModel um WHERE um.userId = :userId AND um.password = :userPassword");
+            q.setParameter("userId", user.getUserId());
             q.setParameter("userPassword", user.getPassword());
             UserModel result = (UserModel) q.getSingleResult();
             return result;
@@ -58,27 +57,37 @@ public class SystemDAOImpl implements SystemDAO {
     public boolean deleteLabDao(LabDetailsModel lab) throws SystemCheckedException {
 
         try {
-            /*Query q = em.createNativeQuery(DELETE_LAB_ACC);
+            Query q = em.createQuery("SELECT ld FROM LabDetailsModel ld WHERE ld.id = :labId");
             q.setParameter("labId", lab.getId());
-            q.executeUpdate();
+            System.out.println(q.toString());
+            LabDetailsModel ld = (LabDetailsModel) q.getSingleResult();
 
-            Query q2 = em.createNativeQuery(DELETE_LAB);
-            q2.setParameter("labId", lab.getId());
-            q.executeUpdate();
+            System.out.println("Lab to be removed: " + ld.getId() + " " + ld.getName());
+            em.remove(ld);
 
-            Query q3 = em.createQuery("select dm from LABDETAILSMODEL dm");
-
-            List<LabDetailsModel> labs =  q3.getResultList();
-            System.out.println("Current labs: " + labs.toString());
-            return true;*/
-
-
-            em.merge(lab);
+            /*LabDetailsModel detailsModel = em.merge(lab);
+            em.remove(detailsModel);*/
             return true;
-
         }catch (NoResultException nre){
             System.out.println("Lab " + lab.getId() + " was not found.");
             return false;
         }
+    }
+
+
+    @Override
+    public List<UserModel> getAllUsers() throws SystemCheckedException {
+        List<UserModel> users = new ArrayList<>();
+        Query q = em.createQuery("SELECT um FROM UserModel um");
+        users = q.getResultList();
+        return users;
+    }
+
+    @Override
+    public List<LabDetailsModel> getAllLabs() throws SystemCheckedException {
+        List<LabDetailsModel> labs = new ArrayList<>();
+        Query q = em.createQuery("SELECT lm FROM LabDetailsModel lm");
+        labs = q.getResultList();
+        return labs;
     }
 }
