@@ -18,11 +18,11 @@ import javax.swing.JPanel;
  */
 public class GuiActionsPanel {
     
-    public JComponent GuiActionsPanel(){
+    public JComponent GuiActionsPanel(int x, int y){
         
         if (panel == null) {
             panel = new JPanel();
-            panel.setPreferredSize(new Dimension(650, 350));
+            panel.setPreferredSize(new Dimension(x, y));
             panel.setLayout(new GridLayout(0,2));
             panel.setBackground(Color.WHITE);
             BorderLayout layout = new BorderLayout();

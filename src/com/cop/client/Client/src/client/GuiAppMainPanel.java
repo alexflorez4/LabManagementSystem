@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.BoxLayout;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -23,34 +24,29 @@ public class GuiAppMainPanel {
     
     public void CreateMainPanel(){
         mainFrame = new JFrame("FAU LMS Dashboard");
-        mainFrame.setPreferredSize(new Dimension(700, 650));
+        mainFrame.setPreferredSize(new Dimension(700, 850));
         Container content = mainFrame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
         GuiBasicInfoPanel basicInfoPanel = new GuiBasicInfoPanel();
         infoPanel = new JPanel();
-        infoPanel.add(basicInfoPanel.createUserInfoPanel());
+        infoPanel.add(basicInfoPanel.createUserInfoPanel(650, 90));
         mainFrame.add(infoPanel);
         
         GuiActionsPanel basicActionPanel = new GuiActionsPanel();
         actionPanel = new JPanel();
-        actionPanel.add(basicActionPanel.GuiActionsPanel());
+        actionPanel.add(basicActionPanel.GuiActionsPanel(650, 300));
         mainFrame.add(actionPanel);
         
         GuiUserReservationsPanel basicDisplayReservations = new GuiUserReservationsPanel();
         displayPanel = new JPanel();
-        displayPanel.add(basicDisplayReservations.displayUserReservations());
+        displayPanel.add(basicDisplayReservations.displayUserReservations(650, 300));
         mainFrame.add(displayPanel);
         
         mainFrame.addWindowListener(new WindowCloseManager());
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
-    
-    private JFrame mainFrame;
-    private JPanel infoPanel;
-    private JPanel actionPanel;
-    private JPanel displayPanel;
     
     private class WindowCloseManager extends WindowAdapter{
         @Override
@@ -62,4 +58,9 @@ public class GuiAppMainPanel {
     private void exitApplication(){
         System.exit(0);
     }
+    
+    private JFrame mainFrame;
+    private JPanel infoPanel;
+    private JPanel actionPanel;
+    private JPanel displayPanel;
 }
