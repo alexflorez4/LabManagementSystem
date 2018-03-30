@@ -18,45 +18,47 @@ import javax.swing.SwingConstants;
  *
  * @author Carlos Guisao
  */
-public class GuiBasicInfoPanel {
-    
-    public JComponent createUserInfoPanel(int x, int y){
+public class GuiBasicInfoPanel implements Panel{
+
+    public GuiBasicInfoPanel() {
         
-        if (panel == null) {
-            panel = new JPanel();
-            // 650, 90
-            panel.setPreferredSize(new Dimension(x, y));
-            panel.setLayout(new GridLayout(0,4));
-            panel.setBackground(Color.WHITE);
-            
-            
-            userLabel.setFont(new Font("SansSerif", Font.BOLD, 15));
-            userLabel.setPreferredSize( new Dimension(20, 24));
-            
-            user.setFont(new Font("SansSerif", Font.PLAIN, 15));
-            user.setPreferredSize( new Dimension(20, 24));
-            
-            userTypeLabel.setFont(new Font("SansSerif", Font.BOLD, 15));
-            userTypeLabel.setPreferredSize( new Dimension( 20, 24 ));
-            
-            userType.setFont(new Font("SansSerif", Font.PLAIN, 15));
-            userType.setPreferredSize( new Dimension( 20, 24 ));
-            
-            panel.add(userLabel);
-            panel.add(user);
-            panel.add(userTypeLabel);
-            panel.add(userType);
-            
-        } else {
-            
-        }
+        this.panel = new JPanel();
+        this.userType = new JLabel("Place Holder ", SwingConstants.CENTER);
+        this.userTypeLabel = new JLabel("Type: ", SwingConstants.CENTER);
+        this.user = new JLabel("Place holder ", SwingConstants.CENTER);
+        this.userLabel = new JLabel("User: ", SwingConstants.CENTER);
+    }
+    
+    @Override
+    public JComponent GetPanel(int x, int y){
+
+        panel.setPreferredSize(new Dimension(x, y));
+        panel.setLayout(new GridLayout(0,4));
+        panel.setBackground(Color.WHITE);
+
+        userLabel.setFont(new Font("SansSerif", Font.BOLD, 15));
+        userLabel.setPreferredSize( new Dimension(20, 24));
+
+        user.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        user.setPreferredSize( new Dimension(20, 24));
+
+        userTypeLabel.setFont(new Font("SansSerif", Font.BOLD, 15));
+        userTypeLabel.setPreferredSize( new Dimension( 20, 24 ));
+
+        userType.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        userType.setPreferredSize( new Dimension( 20, 24 ));
+
+        panel.add(userLabel);
+        panel.add(user);
+        panel.add(userTypeLabel);
+        panel.add(userType);
+
         return panel;
     }
     
-    private transient JPanel panel;
-    private final transient JLabel userLabel = new JLabel("User: ", SwingConstants.CENTER);
-    private final transient JLabel user = new JLabel("Place holder ", SwingConstants.CENTER);
-    private final transient JLabel userTypeLabel = new JLabel("Type: ", SwingConstants.CENTER);
-    private final transient JLabel userType = new JLabel("Place Holder ", SwingConstants.CENTER);
-    
+    private final JPanel panel;
+    private final JLabel userLabel;
+    private final JLabel user;
+    private final JLabel userTypeLabel;
+    private final JLabel userType;   
 }

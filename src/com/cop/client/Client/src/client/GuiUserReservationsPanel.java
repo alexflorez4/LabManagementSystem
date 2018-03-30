@@ -16,25 +16,25 @@ import javax.swing.JPanel;
  *
  * @author Carlos Guisao
  */
-public class GuiUserReservationsPanel {
+public class GuiUserReservationsPanel implements Panel{
+
+    public GuiUserReservationsPanel() {
+        this.panel = new JPanel();
+    }
     
-    public JComponent displayUserReservations(int x, int y){
-        
-        if (panel == null) {
-            panel = new JPanel();
-            panel.setPreferredSize(new Dimension(x, y));
-            panel.setLayout(new GridLayout(0,2));
-            panel.setBackground(Color.WHITE);
-            BorderLayout layout = new BorderLayout();
-            layout.setHgap(5);
-            layout.setVgap(5);
-            panel.setLayout(layout);
-            
-        } else {
-            
-        }
+    @Override
+    public JComponent GetPanel(int x, int y){
+
+        panel.setPreferredSize(new Dimension(x, y));
+        panel.setLayout(new GridLayout(0,2));
+        panel.setBackground(Color.WHITE);
+        BorderLayout layout = new BorderLayout();
+        layout.setHgap(5);
+        layout.setVgap(5);
+        panel.setLayout(layout);
+
         return panel;
     }
     
-    private transient JPanel panel;
+    private final JPanel panel;
 }
