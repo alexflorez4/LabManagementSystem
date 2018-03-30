@@ -5,9 +5,12 @@
  */
 package client.Login;
 
+import client.MainPanel.GuiAppMainPanel;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.BoxLayout;
@@ -16,18 +19,21 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Carlos Guisao
  */
-public class loginPanel {
+public final class loginPanel {
     
-    private JFrame mainFrame;
-    private JPanel editorPanel;
+    public loginPanel(){
+        createMainLoginPanel();
+    }
     
     public void createMainLoginPanel(){
+        
         mainFrame = new JFrame("FAU LMS");
         mainFrame.setPreferredSize(new Dimension(400, 300));
         Container content = mainFrame.getContentPane();
@@ -47,33 +53,36 @@ public class loginPanel {
         JLabel loginTitle = new JLabel("Login");
         JButton submit = new JButton ("Submit");
 
-        if (panel == null) {
-            panel = new JPanel();
-            panel.setPreferredSize(new Dimension(200, 150));
-            loginTitle.setPreferredSize( new Dimension( 200, 24 ));
-            submit.setPreferredSize(new Dimension(200, 24));
-            nameField = new JTextField(name);
-            relationField = new JTextField(relationship);
-            panel.add(new JLabel(""));
-            panel.add(new JLabel(""));
-            panel.setLayout(new GridLayout(0,2));
-            panel.add(loginTitle);
-            panel.add(new JLabel(""));
-            panel.add(new JLabel(""));
-            panel.add(new JLabel(""));
-            panel.add(new JLabel("Name:"));
-            panel.add(nameField);
-            panel.add(new JLabel("Password:"));
-            panel.add(relationField);
-            panel.add(new JLabel(""));
-            panel.add(new JLabel(""));
-            panel.add(new JLabel(""));
-            panel.add(submit);
-        } else {
-            nameField.setText(name);
-            relationField.setText(relationship);
-        }
-
+        panel = new JPanel();
+        panel.setPreferredSize(new Dimension(200, 150));
+        loginTitle.setPreferredSize( new Dimension( 200, 24 ));
+        submit.setPreferredSize(new Dimension(200, 24));
+        nameField = new JTextField(name);
+        passwordField = new JPasswordField(relationship);
+        
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
+        
+        panel.setLayout(new GridLayout(0,2));
+        panel.add(loginTitle);
+        
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
+        panel.add(new JLabel("Name:"));
+        
+        panel.add(nameField);
+        panel.add(new JLabel("Password:"));
+        panel.add(passwordField);
+        
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
+        
+        submit.setActionCommand("Submit");
+        submit.addActionListener(new ButtonClickListener());
+        panel.add(submit);
+        
         return panel;
     }
     
@@ -88,6 +97,10 @@ public class loginPanel {
         System.exit(0);
     }
     
+    private boolean authenticateUser(){
+        return true;
+    }
+    
     public static User retrieveUser(){
         User user = new User();
         user.setId(1);
@@ -96,9 +109,24 @@ public class loginPanel {
         return user;
     }
     
-    private transient JPanel panel;
-    private transient JTextField nameField;
-    private transient JTextField relationField;
+    private class ButtonClickListener implements ActionListener{
+      @Override
+        public void actionPerformed(ActionEvent e) {
+
+            String command = e.getActionCommand();  
+            if(command.equals("Submit")){
+                mainFrame.dispose();
+                GuiAppMainPanel MainDashboad = new GuiAppMainPanel();
+                MainDashboad.CreateMainPanel();
+            }
+        }
+      }
+    
+    private  JFrame mainFrame;
+    private JPanel editorPanel;
+    private JPanel panel;
+    private JTextField nameField;
+    private JPasswordField passwordField;
     private String name;
     private String relationship;
     
