@@ -5,14 +5,11 @@
  */
 package client;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.BoxLayout;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,26 +18,29 @@ import javax.swing.JPanel;
  * @author Carlos Guisao
  */
 public class GuiAppMainPanel {
+
+    public GuiAppMainPanel() {
+        this.mainFrame = new JFrame("FAU LMS Dashboard");
+    }
     
     public void CreateMainPanel(){
-        mainFrame = new JFrame("FAU LMS Dashboard");
+        
         mainFrame.setPreferredSize(new Dimension(700, 850));
         Container content = mainFrame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
-        GuiBasicInfoPanel basicInfoPanel = new GuiBasicInfoPanel();
-        infoPanel = new JPanel();
-        infoPanel.add(basicInfoPanel.createUserInfoPanel(650, 90));
+        PanelFactory panelFactory = new PanelFactory();
+        
+        Panel info = panelFactory.GetPanel("Info");
+        infoPanel.add(info.GetPanel(650, 90));
         mainFrame.add(infoPanel);
         
-        GuiActionsPanel basicActionPanel = new GuiActionsPanel();
-        actionPanel = new JPanel();
-        actionPanel.add(basicActionPanel.GuiActionsPanel(650, 300));
+        Panel action = panelFactory.GetPanel("Action");
+        actionPanel.add(action.GetPanel(650, 300));
         mainFrame.add(actionPanel);
         
-        GuiUserReservationsPanel basicDisplayReservations = new GuiUserReservationsPanel();
-        displayPanel = new JPanel();
-        displayPanel.add(basicDisplayReservations.displayUserReservations(650, 300));
+        Panel reserve = panelFactory.GetPanel("Reserve");
+        displayPanel.add(reserve.GetPanel(650, 300));
         mainFrame.add(displayPanel);
         
         mainFrame.addWindowListener(new WindowCloseManager());
@@ -59,8 +59,8 @@ public class GuiAppMainPanel {
         System.exit(0);
     }
     
-    private JFrame mainFrame;
-    private JPanel infoPanel;
-    private JPanel actionPanel;
-    private JPanel displayPanel;
+    private final JFrame mainFrame;
+    private final JPanel infoPanel = new JPanel();;
+    private final JPanel actionPanel = new JPanel();
+    private final JPanel displayPanel = new JPanel();
 }
