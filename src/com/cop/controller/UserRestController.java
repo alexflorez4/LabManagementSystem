@@ -60,7 +60,6 @@ public class UserRestController {
 
     @RequestMapping({"/deletelab/{userType}/{labId}"})
     public boolean deleteLabController(@PathVariable String userType, @PathVariable Integer labId) throws SystemCheckedException{
-
         return this.labService.deleteLabService(userType, labId);
     }
 
@@ -68,7 +67,6 @@ public class UserRestController {
     public LabDetailsModel viewLabAccController(@PathVariable Integer labId) throws SystemCheckedException{
         return this.labService.viewLabAccService(labId);
     }
-
 
     @RequestMapping({"/getAllUsers"})
     public List<UserModel> getAllUsers() throws SystemCheckedException{

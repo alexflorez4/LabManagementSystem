@@ -5,7 +5,7 @@ http://localhost:8080/faulms/create/Caroline/car/3/student/
 http://localhost:8080/faulms/create/James/jam/4/admin
 
 getAllUsers
-localhost:8080/faulms/getAllUsers
+http://localhost:8080/faulms/getAllUsers
 
 userLoginController
 http://localhost:8080/faulms/user/mar/1
