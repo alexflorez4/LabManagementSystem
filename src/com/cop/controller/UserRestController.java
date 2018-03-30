@@ -64,6 +64,12 @@ public class UserRestController {
         return this.labService.deleteLabService(userType, labId);
     }
 
+    @RequestMapping({"/viewlabAcc/{labId}"})
+    public LabDetailsModel viewLabAccController(@PathVariable Integer labId) throws SystemCheckedException{
+        return this.labService.viewLabAccService(labId);
+    }
+
+
     @RequestMapping({"/getAllUsers"})
     public List<UserModel> getAllUsers() throws SystemCheckedException{
         return this.userService.getAllUsers();

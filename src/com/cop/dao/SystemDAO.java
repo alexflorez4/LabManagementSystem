@@ -15,6 +15,8 @@ public interface SystemDAO {
 
     public  boolean deleteLabDao(LabDetailsModel labId) throws SystemCheckedException;
 
+    public LabDetailsModel viewLabAccDao(Integer labId) throws SystemCheckedException;
+
     public List<UserModel> getAllUsers() throws SystemCheckedException;
 
     public List<LabDetailsModel> getAllLabs() throws SystemCheckedException;

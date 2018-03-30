@@ -40,17 +40,20 @@ public class ClientTest {
             items.add("pcs");
             //labService.addLabService("admin", new LabDetailsModel(0, "lab4","ee101", items));
 
-            List<LabDetailsModel> labs = labService.getAllLabs();
+            /*List<LabDetailsModel> labs = labService.getAllLabs();
             for(LabDetailsModel ld : labs){
                 System.out.println(ld.toString());
-            }
+            }*/
 
-            labService.deleteLabService("admin", 50);
+            LabDetailsModel lab = labService.viewLabAccService(30);
+            System.out.println(lab.toString());
 
-            List<LabDetailsModel> labss = labService.getAllLabs();
+            //labService.deleteLabService("admin", 50);
+
+           /* List<LabDetailsModel> labss = labService.getAllLabs();
             for(LabDetailsModel ld : labss){
                 System.out.println(ld.toString());
-            }
+            }*/
 
 
         } finally {

@@ -14,3 +14,12 @@ http://localhost:8080/faulms/user/sar/2
 addLabController
 http://localhost:8080/faulms/addlab/admin/electronicsLab/ee101/tv,%20pcs,%20boards
 http://localhost:8080/faulms/addlab/admin/electronicsLab2/ee102/tv,%20pcs,%20boards%20oscillosc
+
+getAllLabs
+http://localhost:8080/faulms/getAllLabs
+
+deletelab
+http://localhost:8080/faulms/deletelab/admin/10
+
+viewlabAcc
+http://localhost:8080/faulms/viewlabAcc/30

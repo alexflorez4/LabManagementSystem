@@ -15,4 +15,5 @@ public interface LabService {
 
     public List<LabDetailsModel> getAllLabs() throws SystemCheckedException;
 
+    public LabDetailsModel viewLabAccService(Integer labId) throws SystemCheckedException;
 }

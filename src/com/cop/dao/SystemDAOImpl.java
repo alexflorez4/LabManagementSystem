@@ -74,6 +74,16 @@ public class SystemDAOImpl implements SystemDAO {
         }
     }
 
+    @Override
+    public LabDetailsModel viewLabAccDao(Integer labId) throws SystemCheckedException {
+        Query q = em.createQuery("SELECT lm FROM LabDetailsModel lm WHERE lm.id = :labId");
+        q.setParameter("labId", labId);
+        try {
+            return (LabDetailsModel) q.getSingleResult();
+        }catch (NoResultException nr){
+            throw new SystemCheckedException("No laboratory found with id " + labId);
+        }
+    }
 
     @Override
     public List<UserModel> getAllUsers() throws SystemCheckedException {

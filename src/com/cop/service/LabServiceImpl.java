@@ -45,4 +45,11 @@ public class LabServiceImpl implements LabService {
     public List<LabDetailsModel> getAllLabs() throws SystemCheckedException {
         return systemDAO.getAllLabs();
     }
+
+    @Override
+    public LabDetailsModel viewLabAccService(Integer labId) throws SystemCheckedException {
+        return systemDAO.viewLabAccDao(labId);
+    }
+
+
 }
