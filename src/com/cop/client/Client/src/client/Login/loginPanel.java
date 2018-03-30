@@ -88,6 +88,14 @@ public class loginPanel {
         System.exit(0);
     }
     
+    public static User retrieveUser(){
+        User user = new User();
+        user.setId(1);
+        user.setName("Carlos");
+        user.setType("Admin");
+        return user;
+    }
+    
     private transient JPanel panel;
     private transient JTextField nameField;
     private transient JTextField relationField;

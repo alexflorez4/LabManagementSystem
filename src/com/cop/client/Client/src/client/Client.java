@@ -5,6 +5,9 @@
  */
 package client;
 
+import client.Login.User;
+import client.Login.UserController;
+import client.Login.UserView;
 import client.MainPanel.GuiAppMainPanel;
 import client.Login.loginPanel;
 
@@ -26,6 +29,19 @@ public class Client {
         GuiAppMainPanel MainDashboad = new GuiAppMainPanel();
         MainDashboad.CreateMainPanel();
         
+        
+        User model = loginPanel.retrieveUser();
+        
+        UserView view = new UserView();
+        
+        UserController controller = new UserController(model, view);
+        
+        controller.updateView();
+        
+        controller.setUserName("John");
+        controller.setId(2);
+        controller.setType("Student");
+        controller.updateView();
+        
     }
-    
 }
