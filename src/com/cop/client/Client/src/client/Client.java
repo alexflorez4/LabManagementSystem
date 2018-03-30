@@ -5,6 +5,9 @@
  */
 package client;
 
+import client.MainPanel.GuiAppMainPanel;
+import client.Login.loginPanel;
+
 /**
  *
  * @author Carlos Guisao
@@ -18,10 +21,10 @@ public class Client {
         // TODO code application logic here
         
         loginPanel login = new loginPanel();
-        //login.createMainLoginPanel();
+        login.createMainLoginPanel();
         
         GuiAppMainPanel MainDashboad = new GuiAppMainPanel();
-        MainDashboad.CreateMainPanel();;
+        MainDashboad.CreateMainPanel();
         
     }
     
