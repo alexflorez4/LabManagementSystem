@@ -5,7 +5,7 @@
  */
 package client.MainPanel;
 
-import client.MainPanel.Panel;
+import client.ActionsPanel.FrontController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,16 +26,13 @@ public class GuiActionsPanel implements Panel{
     @Override
     public JComponent GetPanel(int x, int y){
 
-        panel.setPreferredSize(new Dimension(x, y));
-        panel.setLayout(new GridLayout(0,2));
-        panel.setBackground(Color.WHITE);
-        BorderLayout layout = new BorderLayout();
-        layout.setHgap(5);
-        layout.setVgap(5);
-        panel.setLayout(layout);
+        FrontController front = new FrontController();
+        
+        //panel = (JPanel)front.dispatchRequest("ADMIN");
+        panel = (JPanel)front.dispatchRequest("STUDENT");
 
         return panel;
     }
     
-    private final transient JPanel panel;
+    private transient JPanel panel;
 }
