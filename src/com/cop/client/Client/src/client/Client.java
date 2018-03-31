@@ -5,6 +5,7 @@
  */
 package client;
 
+import client.ActionsPanel.FrontController;
 import client.Login.User;
 import client.Login.UserController;
 import client.Login.UserView;
@@ -24,23 +25,6 @@ public class Client {
         // TODO code application logic here
         
         loginPanel login = new loginPanel();
-        //login.createMainLoginPanel();
         
-        //GuiAppMainPanel MainDashboad = new GuiAppMainPanel();
-        //MainDashboad.CreateMainPanel();
-        
-        
-        
-        /*
-        User model = loginPanel.retrieveUser();
-        UserView view = new UserView();
-        UserController controller = new UserController(model, view);
-        controller.updateView();
-        
-        controller.setUserName("John");
-        controller.setId(2);
-        controller.setType("Student");
-        controller.updateView();
-        */
     }
 }
