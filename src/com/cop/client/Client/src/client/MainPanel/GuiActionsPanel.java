@@ -6,10 +6,6 @@
 package client.MainPanel;
 
 import client.ActionsPanel.FrontController;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
