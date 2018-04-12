@@ -5,12 +5,8 @@
  */
 package client;
 
-import client.ActionsPanel.FrontController;
-import client.Login.User;
-import client.Login.UserController;
-import client.Login.UserView;
-import client.MainPanel.GuiAppMainPanel;
 import client.Login.loginPanel;
+
 
 /**
  *
@@ -21,11 +17,11 @@ public class Client {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    
+    //private static final Logger log = LoggerFactory.getLogger(Application.class);
+    
         // TODO code application logic here
-        
-        loginPanel login;
-        login = new loginPanel();
-        
+        public static void main(String[] args) {
+            loginPanel login = new loginPanel();
+        }
     }
-}

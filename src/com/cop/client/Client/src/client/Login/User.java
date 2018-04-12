@@ -5,10 +5,14 @@
  */
 package client.Login;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  *
  * @author Carlos Guisao
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     
     public int getId(){
@@ -35,7 +39,16 @@ public class User {
         this.type = type;
     }
     
+    public String getPassword(){
+        return password;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
+    }
+    
     private int id;
     private String name;
     private String type;
+    private String password;
 }
