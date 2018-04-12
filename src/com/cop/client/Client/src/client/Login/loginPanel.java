@@ -7,6 +7,8 @@ package client.Login;
 
 
 import client.MainPanel.GuiAppMainPanel;
+import static client.RESTCaller.callURL;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -14,12 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -84,7 +81,12 @@ public final class loginPanel {
         panel.add(passwordField);
         
         panel.add(new JLabel(""));
-        panel.add(new JLabel(""));
+        
+        error = new JLabel("Invalid");
+        error.setVisible(false);
+        error.setForeground(Color.red);
+        
+        panel.add(error);
         panel.add(new JLabel(""));
         
         submit.setActionCommand("Submit");
@@ -107,8 +109,9 @@ public final class loginPanel {
     
     private boolean authenticateUser(String username, String password ){
         
-        username = "1";
-        password = "1";
+        username = nameField.getText();
+        password = passwordField.getText();
+        
         String URL = callURL("http://localhost:8181/faulms/user/"+ username + "/" + password + "/");
         System.out.println("\n============Output:============ \n" + URL);
 
@@ -128,35 +131,6 @@ public final class loginPanel {
         return true;
     }
     
-    public static String callURL(String myURL) {
-        System.out.println("Requested URL: " + myURL);
-        StringBuilder sb = new StringBuilder();
-        URLConnection urlConn = null;
-        InputStreamReader in = null;
-        try {
-            URL url = new URL(myURL);
-            urlConn = url.openConnection();
-            if (urlConn != null)
-                    urlConn.setReadTimeout(60 * 1000);
-            if (urlConn != null && urlConn.getInputStream() != null) {
-                    in = new InputStreamReader(urlConn.getInputStream(), Charset.defaultCharset());
-                    BufferedReader bufferedReader = new BufferedReader(in);
-                    if (bufferedReader != null) {
-                            int cp;
-                            while ((cp = bufferedReader.read()) != -1) {
-                                    sb.append((char) cp);
-                            }
-                            bufferedReader.close();
-                    }
-            }
-            in.close();
-        } catch (IOException e) {
-               System.out.println(e);
-        }
-
-        return sb.toString();
-}
-    
     private class ButtonClickListener implements ActionListener{
       @Override
         public void actionPerformed(ActionEvent e) {
@@ -166,6 +140,9 @@ public final class loginPanel {
                 mainFrame.dispose();
                 GuiAppMainPanel MainDashboad = new GuiAppMainPanel();
                 MainDashboad.CreateMainPanel();
+            }
+            else{
+                error.setVisible(true);
             }
         }
       }
@@ -177,5 +154,6 @@ public final class loginPanel {
     private JPasswordField passwordField;
     private String name;
     private String password;
+    private JLabel error;
     
 }
