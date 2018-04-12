@@ -5,6 +5,7 @@
  */
 package client.Login;
 
+
 import client.MainPanel.GuiAppMainPanel;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -13,6 +14,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -21,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  *
@@ -58,7 +66,7 @@ public final class loginPanel {
         loginTitle.setPreferredSize( new Dimension( 200, 24 ));
         submit.setPreferredSize(new Dimension(200, 24));
         nameField = new JTextField(name);
-        passwordField = new JPasswordField(relationship);
+        passwordField = new JPasswordField(password);
         
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
@@ -97,24 +105,64 @@ public final class loginPanel {
         System.exit(0);
     }
     
-    private boolean authenticateUser(){
+    private boolean authenticateUser(String username, String password ){
+        
+        username = "1";
+        password = "1";
+        String URL = callURL("http://localhost:8181/faulms/user/"+ username + "/" + password + "/");
+        System.out.println("\n============Output:============ \n" + URL);
+
+        try {
+            
+            ObjectMapper mapper = new ObjectMapper();
+            User user = mapper.readValue(URL, User.class);
+            System.out.println("User = " + user);
+
+            System.out.println("user.getName() = " + user.getName());
+            System.out.println("user.getType() = " + user.getType());
+            
+            } catch (IOException e) {
+                return false;
+            }
+        
         return true;
     }
     
-    public static User retrieveUser(){
-        User user = new User();
-        user.setId(1);
-        user.setName("Carlos");
-        user.setType("Admin");
-        return user;
-    }
+    public static String callURL(String myURL) {
+        System.out.println("Requested URL: " + myURL);
+        StringBuilder sb = new StringBuilder();
+        URLConnection urlConn = null;
+        InputStreamReader in = null;
+        try {
+            URL url = new URL(myURL);
+            urlConn = url.openConnection();
+            if (urlConn != null)
+                    urlConn.setReadTimeout(60 * 1000);
+            if (urlConn != null && urlConn.getInputStream() != null) {
+                    in = new InputStreamReader(urlConn.getInputStream(), Charset.defaultCharset());
+                    BufferedReader bufferedReader = new BufferedReader(in);
+                    if (bufferedReader != null) {
+                            int cp;
+                            while ((cp = bufferedReader.read()) != -1) {
+                                    sb.append((char) cp);
+                            }
+                            bufferedReader.close();
+                    }
+            }
+            in.close();
+        } catch (IOException e) {
+               System.out.println(e);
+        }
+
+        return sb.toString();
+}
     
     private class ButtonClickListener implements ActionListener{
       @Override
         public void actionPerformed(ActionEvent e) {
 
             String command = e.getActionCommand();  
-            if(command.equals("Submit")){
+            if(command.equals("Submit") && authenticateUser(name, password)){
                 mainFrame.dispose();
                 GuiAppMainPanel MainDashboad = new GuiAppMainPanel();
                 MainDashboad.CreateMainPanel();
@@ -122,12 +170,12 @@ public final class loginPanel {
         }
       }
     
-    private  JFrame mainFrame;
+    private JFrame mainFrame;
     private JPanel editorPanel;
     private JPanel panel;
     private JTextField nameField;
     private JPasswordField passwordField;
     private String name;
-    private String relationship;
+    private String password;
     
 }
