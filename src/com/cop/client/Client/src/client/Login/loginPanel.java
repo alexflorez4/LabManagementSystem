@@ -118,7 +118,7 @@ public final class loginPanel {
         try {
             
             ObjectMapper mapper = new ObjectMapper();
-            User user = mapper.readValue(URL, User.class);
+            user = mapper.readValue(URL, User.class);
             System.out.println("User = " + user);
 
             System.out.println("user.getName() = " + user.getName());
@@ -139,7 +139,7 @@ public final class loginPanel {
             if(command.equals("Submit") && authenticateUser(name, password)){
                 mainFrame.dispose();
                 GuiAppMainPanel MainDashboad = new GuiAppMainPanel();
-                MainDashboad.CreateMainPanel();
+                MainDashboad.CreateMainPanel(user);
             }
             else{
                 error.setVisible(true);
@@ -155,5 +155,5 @@ public final class loginPanel {
     private String name;
     private String password;
     private JLabel error;
-    
+    private User user;
 }

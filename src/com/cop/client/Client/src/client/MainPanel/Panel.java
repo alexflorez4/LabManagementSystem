@@ -5,6 +5,7 @@
  */
 package client.MainPanel;
 
+import client.Login.User;
 import javax.swing.JComponent;
 
 /**
