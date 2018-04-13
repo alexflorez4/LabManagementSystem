@@ -6,6 +6,7 @@
 package client.MainPanel;
 
 import client.ActionsPanel.FrontController;
+import client.Login.User;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
@@ -15,20 +16,21 @@ import javax.swing.JPanel;
  */
 public class GuiActionsPanel implements Panel{
 
-    public GuiActionsPanel() {
+    public GuiActionsPanel(User user) {
         this.panel = new JPanel();
+        this.user = user;
     }
     
     @Override
     public JComponent GetPanel(int x, int y){
 
         FrontController front = new FrontController();
-        
-        //panel = (JPanel)front.dispatchRequest("ADMIN");
-        panel = (JPanel)front.dispatchRequest("STUDENT");
+
+        panel = (JPanel)front.dispatchRequest(user.getType());
 
         return panel;
     }
     
     private transient JPanel panel;
+    private final User user;
 }

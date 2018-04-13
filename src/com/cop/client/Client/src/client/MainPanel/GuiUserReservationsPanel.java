@@ -5,6 +5,7 @@
  */
 package client.MainPanel;
 
+import client.Login.User;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,7 +19,7 @@ import javax.swing.JPanel;
  */
 public class GuiUserReservationsPanel implements Panel{
 
-    public GuiUserReservationsPanel() {
+    public GuiUserReservationsPanel(User user) {
         this.panel = new JPanel();
     }
     

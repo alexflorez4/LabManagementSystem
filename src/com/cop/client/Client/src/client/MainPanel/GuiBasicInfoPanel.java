@@ -5,6 +5,7 @@
  */
 package client.MainPanel;
 
+import client.Login.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,12 +21,12 @@ import javax.swing.SwingConstants;
  */
 public class GuiBasicInfoPanel implements Panel{
 
-    public GuiBasicInfoPanel() {
+    public GuiBasicInfoPanel(User user) {
         
         this.panel = new JPanel();
-        this.userType = new JLabel("Place Holder ", SwingConstants.CENTER);
+        this.userType = new JLabel(user.getType(), SwingConstants.CENTER);
         this.userTypeLabel = new JLabel("Type: ", SwingConstants.CENTER);
-        this.user = new JLabel("Place holder ", SwingConstants.CENTER);
+        this.labelUser = new JLabel(user.getName(), SwingConstants.CENTER);
         this.userLabel = new JLabel("User: ", SwingConstants.CENTER);
     }
     
@@ -39,8 +40,8 @@ public class GuiBasicInfoPanel implements Panel{
         userLabel.setFont(new Font("SansSerif", Font.BOLD, 15));
         userLabel.setPreferredSize( new Dimension(20, 24));
 
-        user.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        user.setPreferredSize( new Dimension(20, 24));
+        labelUser.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        labelUser.setPreferredSize( new Dimension(20, 24));
 
         userTypeLabel.setFont(new Font("SansSerif", Font.BOLD, 15));
         userTypeLabel.setPreferredSize( new Dimension( 20, 24 ));
@@ -49,7 +50,7 @@ public class GuiBasicInfoPanel implements Panel{
         userType.setPreferredSize( new Dimension( 20, 24 ));
 
         panel.add(userLabel);
-        panel.add(user);
+        panel.add(labelUser);
         panel.add(userTypeLabel);
         panel.add(userType);
 
@@ -58,7 +59,7 @@ public class GuiBasicInfoPanel implements Panel{
     
     private final JPanel panel;
     private final JLabel userLabel;
-    private final JLabel user;
+    private final JLabel labelUser;
     private final JLabel userTypeLabel;
     private final JLabel userType;   
 }

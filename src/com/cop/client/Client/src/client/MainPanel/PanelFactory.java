@@ -5,13 +5,16 @@
  */
 package client.MainPanel;
 
+import client.Login.User;
+
+
 /**
  *
  * @author Carlos Guisao
  */
 public class PanelFactory {
     
-    public Panel GetPanel(String panel){
+    public Panel GetPanel(String panel, User user){
         
         if(panel == null)
         {
@@ -19,15 +22,15 @@ public class PanelFactory {
         }
         else if(panel.equalsIgnoreCase("Info"))
         {
-            return new GuiBasicInfoPanel();
+            return new GuiBasicInfoPanel(user);
         }
         else if(panel.equalsIgnoreCase("Action"))
         {
-            return new GuiActionsPanel();
+            return new GuiActionsPanel(user);
         }
         else if(panel.equalsIgnoreCase("Reserve"))
         {
-            return new GuiUserReservationsPanel();
+            return new GuiUserReservationsPanel(user);
         }
         
         return null;

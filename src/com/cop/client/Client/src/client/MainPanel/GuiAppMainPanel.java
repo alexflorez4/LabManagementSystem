@@ -5,6 +5,7 @@
  */
 package client.MainPanel;
 
+import client.Login.User;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
@@ -23,7 +24,7 @@ public class GuiAppMainPanel {
         this.mainFrame = new JFrame("FAU LMS Dashboard");
     }
     
-    public void CreateMainPanel(){
+    public void CreateMainPanel(User user){
         
         mainFrame.setPreferredSize(new Dimension(700, 850));
         Container content = mainFrame.getContentPane();
@@ -31,15 +32,15 @@ public class GuiAppMainPanel {
 
         PanelFactory panelFactory = new PanelFactory();
         
-        Panel info = panelFactory.GetPanel("Info");
+        Panel info = panelFactory.GetPanel("Info", user);
         infoPanel.add(info.GetPanel(650, 90));
         mainFrame.add(infoPanel);
         
-        Panel action = panelFactory.GetPanel("Action");
+        Panel action = panelFactory.GetPanel("Action", user);
         actionPanel.add(action.GetPanel(650, 300));
         mainFrame.add(actionPanel);
         
-        Panel reserve = panelFactory.GetPanel("Reserve");
+        Panel reserve = panelFactory.GetPanel("Reserve", user);
         displayPanel.add(reserve.GetPanel(650, 300));
         mainFrame.add(displayPanel);
         
