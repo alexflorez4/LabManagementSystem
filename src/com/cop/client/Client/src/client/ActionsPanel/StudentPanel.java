@@ -8,6 +8,8 @@ package client.ActionsPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -47,5 +49,13 @@ public class StudentPanel {
         
         return panel;
     }
+    
+    private class ButtonClickListener implements ActionListener{
+      @Override
+        public void actionPerformed(ActionEvent e) {
+            
+        }
+    }
+    
     private final transient JPanel panel;
 }
