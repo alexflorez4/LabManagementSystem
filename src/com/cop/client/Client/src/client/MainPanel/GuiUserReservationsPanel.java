@@ -5,6 +5,7 @@
  */
 package client.MainPanel;
 
+<<<<<<< HEAD
 import Iterator.Iterator;
 import Iterator.UserRepository;
 import client.Login.User;
@@ -17,6 +18,15 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+=======
+import client.Login.User;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+>>>>>>> 2109397bd934e266bf346ae8363292234acaedaf
 
 /**
  *
@@ -32,6 +42,7 @@ public class GuiUserReservationsPanel implements Panel{
     public JComponent GetPanel(int x, int y){
 
         panel.setPreferredSize(new Dimension(x, y));
+<<<<<<< HEAD
         panel.setLayout(new GridLayout(0,1));
         panel.setBackground(Color.WHITE);
         
@@ -55,11 +66,22 @@ public class GuiUserReservationsPanel implements Panel{
         JScrollPane listScrollPane = new JScrollPane(list);
         
         panel.add(listScrollPane);
+=======
+        panel.setLayout(new GridLayout(0,2));
+        panel.setBackground(Color.WHITE);
+        BorderLayout layout = new BorderLayout();
+        layout.setHgap(5);
+        layout.setVgap(5);
+        panel.setLayout(layout);
+>>>>>>> 2109397bd934e266bf346ae8363292234acaedaf
 
         return panel;
     }
     
     private final JPanel panel;
+<<<<<<< HEAD
     private DefaultListModel listModel;
     private JList list;
+=======
+>>>>>>> 2109397bd934e266bf346ae8363292234acaedaf
 }
