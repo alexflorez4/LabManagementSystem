@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client.StudentPanel;
+package client.AdditionalPanel;
 
 /**
  *
  * @author Carlos Guisao
  */
-public interface Panel {
-    void draw();
+public class ViewLabSchedule implements Panel{
+    
+    @Override
+    public void draw(){
+        System.out.println("ViewLabSchedule");
+    }
 }

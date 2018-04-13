@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client.StudentPanel;
+package client.AdditionalPanel;
 
 /**
  *
  * @author Carlos Guisao
  */
-public class CancelReservation implements Panel{
+public class MakeReservation implements Panel{
     
     @Override
     public void draw(){
-        System.out.println("CancelReservation");
+        System.out.println("MakeReservation");
     }
 }

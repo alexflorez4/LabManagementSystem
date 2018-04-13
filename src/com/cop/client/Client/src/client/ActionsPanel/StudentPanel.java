@@ -5,6 +5,7 @@
  */
 package client.ActionsPanel;
 
+import client.AdditionalPanel.PanelMaker;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -47,14 +48,48 @@ public class StudentPanel {
         panel.add(labCancel);
         panel.add(labReservation);
         
+        labAcc.setActionCommand("View Lab Accmodations");
+        labSchedule.setActionCommand("View Lab Schedule");
+        labReserve.setActionCommand("Reserve Lab");
+        labCancel.setActionCommand("Cancel Lab");
+        labReservation.setActionCommand("Lab Reservation");
+        
+        labAcc.addActionListener(new StudentPanel.ButtonClickListener());
+        labSchedule.addActionListener(new StudentPanel.ButtonClickListener());
+        labReserve.addActionListener(new StudentPanel.ButtonClickListener());
+        labCancel.addActionListener(new StudentPanel.ButtonClickListener());
+        labReservation.addActionListener(new StudentPanel.ButtonClickListener());
+        
         return panel;
     }
     
     private class ButtonClickListener implements ActionListener{
       @Override
         public void actionPerformed(ActionEvent e) {
+            String command = e.getActionCommand();  
+            PanelMaker panelMaker = new PanelMaker();
             
+          switch (command) {
+              case "View Lab Accmodations":
+                  panelMaker.drawViewLabAcc();
+                  break;
+              case "View Lab Schedule":
+                  panelMaker.drawViewLabSch();
+                  break;
+              case "Reserve Lab":
+                  panelMaker.drawMakeReservation();
+                  break;
+              case "Cancel Lab":
+                  panelMaker.drawCancelRervation();
+                  break;
+              case "Lab Reservation":
+                  panelMaker.drawMakeReservation();
+                  break;
+              default:
+                  break;
+          }
         }
     }
+    
     private final transient JPanel panel;
 }

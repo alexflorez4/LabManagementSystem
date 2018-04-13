@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client.StudentPanel;
+package client.AdditionalPanel;
 
 /**
  *
@@ -17,6 +17,9 @@ public class PanelMaker {
         cancelReservation = new CancelReservation();
         viewLabSchedule = new ViewLabSchedule();
         viewLabAccomodation = new ViewLabAccomodation();
+        addLab = new AddLab();
+        cancelLab = new CancelLab();
+        DeleteLab = new DeleteLab();
     }
     
     public void drawViewRservation(){
@@ -39,9 +42,24 @@ public class PanelMaker {
         viewLabAccomodation.draw();
     }
     
+    public void drawAddLab(){
+        addLab.draw();
+    }
+    
+    public void drawCancelLab(){
+        cancelLab.draw();
+    }
+    
+    public void drawDeleteLab(){
+        DeleteLab.draw();
+    }
+    
     private final Panel viewMyReservation;
     private final Panel makeReservation;
     private final Panel cancelReservation;
     private final Panel viewLabSchedule;
     private final Panel viewLabAccomodation;
+    private final Panel addLab;
+    private final Panel cancelLab;
+    private final Panel DeleteLab;
 }
