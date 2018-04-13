@@ -5,6 +5,13 @@
  */
 package client.AdditionalPanel;
 
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+
 /**
  *
  * @author carlo
@@ -13,6 +20,14 @@ public class CancelLab implements Panel{
     
     @Override
     public void draw(){
-        System.out.println("CancelLab");
+        mainFrame = new JFrame("Cancel Lab");
+        mainFrame.setPreferredSize(new Dimension(400, 300));
+        Container content = mainFrame.getContentPane();
+        content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
+        
+        mainFrame.pack();
+        mainFrame.setVisible(true);
     }
+    
+    private JFrame mainFrame;
 }
