@@ -16,4 +16,6 @@ public interface LabService {
     public List<LabDetailsModel> getAllLabs() throws SystemCheckedException;
 
     public LabDetailsModel viewLabAccService(Integer labId) throws SystemCheckedException;
+
+    public String makeReservationService(String userid, Integer labid, String date, String slot) throws SystemCheckedException;
 }

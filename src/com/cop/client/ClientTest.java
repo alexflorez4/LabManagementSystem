@@ -19,14 +19,15 @@ public class ClientTest {
 
             //USER
             UserService userService = (UserService) container.getBean(UserService.class);
-            //userService.createUser(new UserModel("User3", "admin", "1"));
+            //userService.createUser(new UserModel("Peter", "pet", "student", "1"));
             //userService.createUser(new UserModel("User4", "admin", "1"));
 
-            /*List<UserModel> users = userService.getAllUsers();
+            /*System.out.println("USers: ");
+            List<UserModel> users = userService.getAllUsers();
             for(UserModel um : users){
                 System.out.println(um.toString());
-            }*/
-
+            }
+            System.out.println("End of Users **");*/
 
             // LAB
             LabService labService = (LabService)container.getBean(LabService.class);
@@ -34,10 +35,10 @@ public class ClientTest {
             List<String> items = new ArrayList<>();
             items.add("tv");
             items.add("projector");
-
+            items.add("pcs");
             //labService.addLabService("admin", new LabDetailsModel(0, "lab3","ee101", items));
 
-            items.add("pcs");
+
             //labService.addLabService("admin", new LabDetailsModel(0, "lab4","ee101", items));
 
             /*List<LabDetailsModel> labs = labService.getAllLabs();
@@ -45,8 +46,10 @@ public class ClientTest {
                 System.out.println(ld.toString());
             }*/
 
-            LabDetailsModel lab = labService.viewLabAccService(30);
-            System.out.println(lab.toString());
+            //LabDetailsModel lab = labService.viewLabAccService(30);
+            //System.out.println(lab.toString());
+
+            //labService.makeReservationService("")
 
             //labService.deleteLabService("admin", 50);
 
@@ -55,6 +58,8 @@ public class ClientTest {
                 System.out.println(ld.toString());
             }*/
 
+            String myFirstReservation = labService.makeReservationService("pet", 10, "2018-4-18 9:00", "2018-4-18 10:00");
+            System.out.println(myFirstReservation);
 
         } finally {
             container.close();

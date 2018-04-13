@@ -1,6 +1,7 @@
 package com.cop.dao;
 
 import com.cop.model.LabDetailsModel;
+import com.cop.model.LabSchedule;
 import com.cop.model.UserModel;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface SystemDAO {
     public List<UserModel> getAllUsers() throws SystemCheckedException;
 
     public List<LabDetailsModel> getAllLabs() throws SystemCheckedException;
+
+    public String makeReservationDao(LabSchedule ls) throws SystemCheckedException;
 }

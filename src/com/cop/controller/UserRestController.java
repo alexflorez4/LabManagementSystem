@@ -68,6 +68,13 @@ public class UserRestController {
         return this.labService.viewLabAccService(labId);
     }
 
+
+    @RequestMapping({"/newreserv/{userid}/{labid}/{date}/{slot}"})
+    public String makeReservationController(@PathVariable String userid, @PathVariable Integer labid,
+                                            @PathVariable String date, @PathVariable String slot) throws SystemCheckedException{
+        return this.labService.makeReservationService(userid, labid, date, slot);
+    }
+
     @RequestMapping({"/getAllUsers"})
     public List<UserModel> getAllUsers() throws SystemCheckedException{
         return this.userService.getAllUsers();
@@ -77,5 +84,8 @@ public class UserRestController {
     public List<LabDetailsModel> getAllLabs() throws SystemCheckedException{
         return this.labService.getAllLabs();
     }
+
+
+
 
 }

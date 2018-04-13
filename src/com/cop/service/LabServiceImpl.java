@@ -3,11 +3,15 @@ package com.cop.service;
 import com.cop.dao.SystemCheckedException;
 import com.cop.dao.SystemDAO;
 import com.cop.model.LabDetailsModel;
+import com.cop.model.LabSchedule;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -51,5 +55,34 @@ public class LabServiceImpl implements LabService {
         return systemDAO.viewLabAccDao(labId);
     }
 
+    @Override
+    public String makeReservationService(String userid, Integer labid, String resBegin, String resEnd) throws SystemCheckedException {
 
+        LabSchedule ls = new LabSchedule();
+        ls.setUserId(userid);
+        ls.setId(labid);
+
+        //SAMPLE DATE:  String dateIn = "2018-4-18 9:00";
+        java.text.SimpleDateFormat DATE_FORMAT_1 = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm");
+
+        Date startReservation = new Date();
+        Date endReservation = new Date();
+
+        try {
+            startReservation = DATE_FORMAT_1.parse(resBegin);
+            endReservation = DATE_FORMAT_1.parse(resEnd);
+        } catch (ParseException e) {
+            System.out.println("Was not able to parse date");
+            e.printStackTrace();
+        }
+        System.out.println(startReservation.toString());
+
+        ls.setReservationStart(startReservation);
+        ls.setReservationEnd(endReservation);
+
+        if(startReservation.after(endReservation)){
+            throw  new SystemCheckedException("Reservation ends before starts");
+        }
+        return systemDAO.makeReservationDao(ls);
+    }
 }

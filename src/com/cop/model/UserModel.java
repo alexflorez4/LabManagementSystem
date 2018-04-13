@@ -80,11 +80,6 @@ public class UserModel {
 
     @Override
     public String toString() {
-        return "UserModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "USER: DB id: " + id + " User Id:" + userId + " - name: " + name + " - type: " + type +        " - password: " + password;
     }
 }
