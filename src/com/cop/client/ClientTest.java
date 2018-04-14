@@ -2,6 +2,7 @@ package com.cop.client;
 
 import com.cop.dao.SystemCheckedException;
 import com.cop.model.LabDetailsModel;
+import com.cop.model.LabSchedule;
 import com.cop.model.UserModel;
 import com.cop.service.LabService;
 import com.cop.service.UserService;
@@ -58,8 +59,14 @@ public class ClientTest {
                 System.out.println(ld.toString());
             }*/
 
-            String myFirstReservation = labService.makeReservationService("pet", 10, "2018-4-18 9:00", "2018-4-18 10:00");
-            System.out.println(myFirstReservation);
+            String myFirstReservation = labService.makeReservationService("pet", 11, "2018-4-18 9:00", "2018-4-18 10:00");
+            System.out.println("New Reservation: " + myFirstReservation);
+
+            List<LabSchedule> labSchedule = labService.viewLabSchedService(11);
+
+            for(LabSchedule ls : labSchedule){
+                System.out.println(ls.toString());
+            }
 
         } finally {
             container.close();

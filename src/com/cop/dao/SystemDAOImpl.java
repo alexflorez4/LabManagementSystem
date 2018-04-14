@@ -103,29 +103,44 @@ public class SystemDAOImpl implements SystemDAO {
     }
 
     @Override
+    public List<LabSchedule> viewLabScheduleDao(Integer labId) throws SystemCheckedException {
+        List<LabSchedule> list = new ArrayList<>();
+
+        Query q = em.createQuery("SELECT ls FROM LabSchedule ls WHERE ls.labId = :labId");
+        q.setParameter("labId", labId);
+        try {
+            return (List<LabSchedule>) q.getResultList();
+        }catch (NoResultException nr){
+            throw new SystemCheckedException("No laboratory found with id " + labId);
+        }
+    }
+
+    @Override
     public String makeReservationDao(LabSchedule ls) throws SystemCheckedException {
 
-        //LABSCHEDULE(ID INTEGER NOT NULL PRIMARY KEY,
-        // LABID INTEGER NOT NULL,
-        // RESERVATIONEND TIMESTAMP,
-        // RESERVATIONSTART TIMESTAMP,
-        // USERID VARCHAR(255))
+        Query q = em.createQuery("SELECT lm FROM LabDetailsModel lm WHERE lm.id = :labId");
+        q.setParameter("labId", ls.getLabId());
 
-        //em.persist(ls);
-        Query q = em.createNativeQuery("INSERT INTO LABSCHEDULE (ID, USERID, LABID, RESERVATIONSTART, RESERVATIONEND) VALUES (3, ?, ?, ?, ?)");
-        q.setParameter(1, ls.getUserId());
-        q.setParameter(2, ls.getLabId());
-        q.setParameter(3, ls.getReservationStart());
-        q.setParameter(4, ls.getReservationEnd());
+        try {
+            q.getSingleResult();
+        }catch (NoResultException nr){
+            throw new SystemCheckedException("No laboratory found with id " + ls.getLabId());
+        }
+
+        Query idQry = em.createQuery("SELECT max(ls.id) FROM LabSchedule ls");
+        Integer maxId = (Integer) idQry.getSingleResult();
+        if(maxId == null || maxId == 0){
+            maxId = 1;
+        }
+
+        q = em.createNativeQuery("INSERT INTO LABSCHEDULE (ID, USERID, LABID, RESERVATIONSTART, RESERVATIONEND) VALUES (?, ?, ?, ?, ?)");
+        q.setParameter(1, ++maxId);
+        q.setParameter(2, ls.getUserId());
+        q.setParameter(3, ls.getLabId());
+        q.setParameter(4, ls.getReservationStart());
+        q.setParameter(5, ls.getReservationEnd());
         q.executeUpdate();
-        //em.getTransaction().commit();
+
         return "Success";
-        /*try {
-            em.persist(ls);
-            return "Success";
-        }catch (Exception e){
-            e.getMessage();
-            return "Insertion failed";
-        }*/
     }
 }

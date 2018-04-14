@@ -2,6 +2,7 @@ package com.cop.controller;
 
 import com.cop.dao.SystemCheckedException;
 import com.cop.model.LabDetailsModel;
+import com.cop.model.LabSchedule;
 import com.cop.model.UserModel;
 import com.cop.service.LabService;
 import com.cop.service.UserService;
@@ -68,11 +69,16 @@ public class UserRestController {
         return this.labService.viewLabAccService(labId);
     }
 
+    @RequestMapping({"/viewlabRes/{labId}"})
+    public List<LabSchedule> viewLabSchedController(@PathVariable Integer labId) throws SystemCheckedException{
+        return this.labService.viewLabSchedService(labId);
+    }
 
-    @RequestMapping({"/newreserv/{userid}/{labid}/{date}/{slot}"})
+
+    @RequestMapping({"/newreserv/{userid}/{labid}/{start}/{end}"})
     public String makeReservationController(@PathVariable String userid, @PathVariable Integer labid,
-                                            @PathVariable String date, @PathVariable String slot) throws SystemCheckedException{
-        return this.labService.makeReservationService(userid, labid, date, slot);
+                                            @PathVariable String start, @PathVariable String end) throws SystemCheckedException{
+        return this.labService.makeReservationService(userid, labid, start, end);
     }
 
     @RequestMapping({"/getAllUsers"})

@@ -22,5 +22,7 @@ public interface SystemDAO {
 
     public List<LabDetailsModel> getAllLabs() throws SystemCheckedException;
 
+    public List<LabSchedule> viewLabScheduleDao(Integer labId) throws SystemCheckedException;
+
     public String makeReservationDao(LabSchedule ls) throws SystemCheckedException;
 }

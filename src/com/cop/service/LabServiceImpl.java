@@ -56,11 +56,12 @@ public class LabServiceImpl implements LabService {
     }
 
     @Override
-    public String makeReservationService(String userid, Integer labid, String resBegin, String resEnd) throws SystemCheckedException {
+    public List<LabSchedule> viewLabSchedService(Integer labId) throws SystemCheckedException {
+        return systemDAO.viewLabScheduleDao(labId);
+    }
 
-        LabSchedule ls = new LabSchedule();
-        ls.setUserId(userid);
-        ls.setId(labid);
+    @Override
+    public String makeReservationService(String userid, Integer labid, String resBegin, String resEnd) throws SystemCheckedException {
 
         //SAMPLE DATE:  String dateIn = "2018-4-18 9:00";
         java.text.SimpleDateFormat DATE_FORMAT_1 = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm");
@@ -75,14 +76,12 @@ public class LabServiceImpl implements LabService {
             System.out.println("Was not able to parse date");
             e.printStackTrace();
         }
-        System.out.println(startReservation.toString());
-
-        ls.setReservationStart(startReservation);
-        ls.setReservationEnd(endReservation);
 
         if(startReservation.after(endReservation)){
             throw  new SystemCheckedException("Reservation ends before starts");
         }
+
+        LabSchedule ls = new LabSchedule(userid, labid, startReservation, endReservation);
         return systemDAO.makeReservationDao(ls);
     }
 }

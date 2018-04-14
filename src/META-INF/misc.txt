@@ -1,25 +1,33 @@
-createUser
+Create Users
 http://localhost:8080/faulms/create/Mark/mar/1/student/
 http://localhost:8080/faulms/create/Sarah/sar/2/student/
 http://localhost:8080/faulms/create/Caroline/car/3/student/
 http://localhost:8080/faulms/create/James/jam/4/admin
 
-getAllUsers
+Get All Users
 http://localhost:8080/faulms/getAllUsers
 
-userLoginController
+User Login
 http://localhost:8080/faulms/user/mar/1
 http://localhost:8080/faulms/user/sar/2
 
-addLabController
+Add New Lab
 http://localhost:8080/faulms/addlab/admin/electronicsLab/ee101/tv,%20pcs,%20boards
 http://localhost:8080/faulms/addlab/admin/electronicsLab2/ee102/tv,%20pcs,%20boards%20oscillosc
 
-getAllLabs
+Get All Labs
 http://localhost:8080/faulms/getAllLabs
 
-deletelab
+Delete Lab
 http://localhost:8080/faulms/deletelab/admin/10
 
-viewlabAcc
+View Lab Accommodations
 http://localhost:8080/faulms/viewlabAcc/30
+
+view lab reservations
+http://localhost:8080/faulms/viewlabRes/11
+
+Make new Reservation
+http://localhost:8080/faulms/newreserv/jam/11/2018-4-18 9:00/2018-4-18 10:00
+http://localhost:8080/faulms/newreserv/jam/11/2018-4-19 9:00/2018-4-19 14:00
+http://localhost:8080/faulms/newreserv/jam/12/2018-4-18%209:00/2018-4-18%2010:00

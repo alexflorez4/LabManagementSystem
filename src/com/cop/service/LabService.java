@@ -2,6 +2,7 @@ package com.cop.service;
 
 import com.cop.dao.SystemCheckedException;
 import com.cop.model.LabDetailsModel;
+import com.cop.model.LabSchedule;
 import com.cop.model.UserModel;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface LabService {
     public LabDetailsModel viewLabAccService(Integer labId) throws SystemCheckedException;
 
     public String makeReservationService(String userid, Integer labid, String date, String slot) throws SystemCheckedException;
+
+    public List<LabSchedule> viewLabSchedService(Integer labId) throws SystemCheckedException;
 }
