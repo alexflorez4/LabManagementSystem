@@ -84,4 +84,9 @@ public class LabServiceImpl implements LabService {
         LabSchedule ls = new LabSchedule(userid, labid, startReservation, endReservation);
         return systemDAO.makeReservationDao(ls);
     }
+
+    @Override
+    public boolean cancelReservationService(Integer resId) throws SystemCheckedException {
+        return systemDAO.cancelReservationDao(resId);
+    }
 }

@@ -81,6 +81,12 @@ public class UserRestController {
         return this.labService.makeReservationService(userid, labid, start, end);
     }
 
+    @RequestMapping({"cancelRes/{resId}"})
+    public boolean cancelReservationController(@PathVariable Integer resId) throws SystemCheckedException{
+        return this.labService.cancelReservationService(resId);
+    }
+
+
     @RequestMapping({"/getAllUsers"})
     public List<UserModel> getAllUsers() throws SystemCheckedException{
         return this.userService.getAllUsers();

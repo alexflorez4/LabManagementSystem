@@ -21,4 +21,6 @@ public interface LabService {
     public String makeReservationService(String userid, Integer labid, String date, String slot) throws SystemCheckedException;
 
     public List<LabSchedule> viewLabSchedService(Integer labId) throws SystemCheckedException;
+
+    public boolean cancelReservationService(Integer resId) throws SystemCheckedException;
 }

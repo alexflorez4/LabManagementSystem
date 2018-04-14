@@ -143,4 +143,12 @@ public class SystemDAOImpl implements SystemDAO {
 
         return "Success";
     }
+
+    @Override
+    public boolean cancelReservationDao(Integer resId) {
+        Query q = em.createNativeQuery("DELETE FROM LABSCHEDULE lS WHERE lS.id = :resId");
+        q.setParameter("resId", resId);
+        q.executeUpdate();
+        return true;
+    }
 }
