@@ -5,9 +5,12 @@
  */
 package client.AdditionalPanel;
 
+import static client.RESTCaller.callURL;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -64,9 +67,30 @@ public class DeleteLab implements Panel{
         panel.add(new JLabel(""));
         
         submit.setActionCommand("Submit");
+        submit.addActionListener(new ButtonClickListener());
         panel.add(submit);
         
         return panel;
+    }
+    
+    private class ButtonClickListener implements ActionListener{
+      @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            String command = e.getActionCommand();  
+            if(command.equals("Submit") && deleteLab()){
+                mainFrame.dispose();
+            }
+        }
+
+        private boolean deleteLab() {
+            String lab =  deleteField.getText();
+
+            String URL = callURL("http://localhost:8181/faulms/deletelab/admin/"+ lab);
+            System.out.println("\n============Output:============ \n" + URL);
+
+            return Boolean.parseBoolean(URL);
+        }
     }
     
     private JFrame mainFrame;

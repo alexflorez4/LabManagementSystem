@@ -5,26 +5,40 @@
  */
 package client.MainPanel;
 
-import client.Iterator.Iterator;
-import client.Iterator.UserRepository;
-import client.Login.User;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import static client.RESTCaller.callURL;
+import client.model.LabDetails;
+import client.model.TableModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JComponent;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import client.Login.User;
-import java.awt.BorderLayout;
+import client.model.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.IOException;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import com.google.gson.JsonParser;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Carlos Guisao
@@ -42,39 +56,35 @@ public class GuiUserReservationsPanel implements Panel{
         panel.setLayout(new GridLayout(0,1));
         panel.setBackground(Color.WHITE);
         
-        listModel = new DefaultListModel();
-        //listModel.addElement("Carlos");
-        //listModel.addElement("Marcela");
+        String URL = callURL("http://localhost:8181/faulms/getAllLabs/");
+        System.out.println("\n============Output:============ \n" + URL);
         
-        UserRepository namesRepository = new UserRepository();
+        ObjectMapper objectMapper = new ObjectMapper();
+    	TypeReference<List<LabDetails>> mapType = new TypeReference<List<LabDetails>>() {};
+    	List<LabDetails> jsonToPersonList = null;
+        try {
+            jsonToPersonList = objectMapper.readValue(URL, mapType);
+        } catch (IOException ex) {
+            Logger.getLogger(GuiUserReservationsPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        panel.setBorder (BorderFactory.createTitledBorder 
+        (BorderFactory.createEtchedBorder (), "All Laboratories", TitledBorder.CENTER, TitledBorder.TOP, 
+                new Font("times new roman",Font.BOLD,20)));
 
-        for(Iterator iter = namesRepository.getIterator(); iter.hasNext();){
-           String name = (String)iter.next();
-           listModel.addElement(name);
-           System.out.println("Name : " + name);
-        } 
-        
-        //Create the list and put it in a scroll pane.
-        list = new JList(listModel);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setSelectedIndex(0);
-        list.setVisibleRowCount(5);
-        JScrollPane listScrollPane = new JScrollPane(list);
-        
-        panel.add(listScrollPane);
+        JTable table = new JTable();
+        table.setRowHeight(30);
+        TableModel model = new TableModel(jsonToPersonList);
+        JScrollPane scrollPane = new JScrollPane(table);
+        table.setModel(model);
+        panel.add(scrollPane);
 
-        panel.setLayout(new GridLayout(0,2));
+        panel.setLayout(new GridLayout(0,1));
         panel.setBackground(Color.WHITE);
-        BorderLayout layout = new BorderLayout();
-        layout.setHgap(5);
-        layout.setVgap(5);
-        panel.setLayout(layout);
 
         return panel;
     }
     
     private final JPanel panel;
-
     private DefaultListModel listModel;
-    private JList list;
+    private final JLabel label = new JLabel("All Laboratories");
 }

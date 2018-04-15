@@ -6,7 +6,7 @@
 package client.MainPanel;
 
 import client.ActionsPanel.FrontController;
-import client.Login.User;
+import client.model.User;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 

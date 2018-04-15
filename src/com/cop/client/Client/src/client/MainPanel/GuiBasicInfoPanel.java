@@ -5,7 +5,7 @@
  */
 package client.MainPanel;
 
-import client.Login.User;
+import client.model.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;

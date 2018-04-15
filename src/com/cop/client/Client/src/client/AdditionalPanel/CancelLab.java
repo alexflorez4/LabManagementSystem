@@ -69,6 +69,8 @@ public class CancelLab implements Panel{
         return panel;
     }
     
+    
+    
     private JFrame mainFrame;
     private JPanel editorPanel;
     private JPanel panel;

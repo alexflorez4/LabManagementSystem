@@ -5,6 +5,8 @@
  */
 package client.Login;
 
+import client.model.User;
+
 /**
  *
  * @author Carlos Guisao

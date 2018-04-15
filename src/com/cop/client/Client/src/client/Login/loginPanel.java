@@ -6,6 +6,7 @@
 package client.Login;
 
 
+import client.model.User;
 import client.MainPanel.GuiAppMainPanel;
 import static client.RESTCaller.callURL;
 import java.awt.Color;
