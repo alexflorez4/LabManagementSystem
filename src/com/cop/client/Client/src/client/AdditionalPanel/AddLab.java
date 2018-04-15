@@ -5,16 +5,19 @@
  */
 package client.AdditionalPanel;
 
+import static client.RESTCaller.callURL;
+import com.google.common.base.Strings;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -49,7 +52,9 @@ public class AddLab implements Panel{
         submit.setPreferredSize(new Dimension(200, 24));
         locationField = new JTextField(location);
         labNameField = new JTextField(labName);
-        detailsField = new JPasswordField(details);
+        detailsField = new JTextField(details);
+        detailsField1 = new JTextField(details1);
+        detailsField2 = new JTextField(details2);
         
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
@@ -63,19 +68,78 @@ public class AddLab implements Panel{
         panel.add(new JLabel("Location:"));
         panel.add(locationField);
         
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
+        
         panel.add(new JLabel("Lab Name:"));
         panel.add(labNameField);
+        
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
         
         panel.add(new JLabel("Details:"));
         panel.add(detailsField);
         
         panel.add(new JLabel(""));
+        
+        panel.add(detailsField1);
+        
+        panel.add(new JLabel(""));
+        panel.add(detailsField2);
+        
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
         panel.add(new JLabel(""));
         
         submit.setActionCommand("Submit");
+        submit.addActionListener(new ButtonClickListener());
         panel.add(submit);
         
         return panel;
+    }
+
+    private class ButtonClickListener implements ActionListener{
+      @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            String command = e.getActionCommand();  
+            if(command.equals("Submit") && addLab()){
+                mainFrame.dispose();
+            }
+        }
+    }
+    
+    private boolean addLab(){
+        
+        String lab =  labNameField.getText();
+        String loc = locationField.getText();
+        String detail = getDetails();
+        
+        String URL = callURL("http://localhost:8181/faulms/addlab/admin/"+ lab + "/" + loc + "/" + detail);
+        System.out.println("\n============Output:============ \n" + URL);
+        
+        return Boolean.parseBoolean(URL);
+    }
+    
+    private String getDetails() {
+        
+        String det1 = detailsField.getText();
+        String det12 = detailsField1.getText();
+        String det13 = detailsField2.getText();
+        
+        
+        if(!Strings.isNullOrEmpty(det1) && !Strings.isNullOrEmpty(det12) && !Strings.isNullOrEmpty(det13)){
+            return det1 + ",%20" + det12 + ",%20" + det13;
+        }
+        else if(!Strings.isNullOrEmpty(det1) && !Strings.isNullOrEmpty(det12)){
+            return det1 + ",%20" + det12;
+        }
+        else if(!Strings.isNullOrEmpty(det1)){
+            return det1;
+        }
+        
+        return null;
+        
     }
     
     private JFrame mainFrame;
@@ -84,7 +148,11 @@ public class AddLab implements Panel{
     private JTextField locationField;
     private JTextField labNameField;
     private JTextField detailsField;
+    private JTextField detailsField1;
+    private JTextField detailsField2;
     private String labName;
     private String location;
     private String details;
+    private String details1;
+    private String details2;
 }
