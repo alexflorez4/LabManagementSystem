@@ -7,7 +7,6 @@ package client;
 
 import client.Login.loginPanel;
 
-
 /**
  *
  * @author Carlos Guisao
@@ -17,11 +16,9 @@ public class Client {
     /**
      * @param args the command line arguments
      */
-    
-    //private static final Logger log = LoggerFactory.getLogger(Application.class);
-    
+    public static void main(String[] args) {
         // TODO code application logic here
-        public static void main(String[] args) {
-            loginPanel login = new loginPanel();
-        }
+        loginPanel login = new loginPanel();
     }
+    
+}
