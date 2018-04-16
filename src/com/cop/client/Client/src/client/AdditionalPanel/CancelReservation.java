@@ -5,10 +5,13 @@
  */
 package client.AdditionalPanel;
 
+import static client.RESTCaller.callURL;
 import client.model.User;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -65,9 +68,30 @@ public class CancelReservation implements Panel{
         panel.add(new JLabel(""));
         
         submit.setActionCommand("Submit");
+        submit.addActionListener(new ButtonClickListener());
         panel.add(submit);
         
         return panel;
+    }
+    
+    private class ButtonClickListener implements ActionListener{
+      @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            String command = e.getActionCommand();  
+            if(command.equals("Submit") && deleteReservation()){
+                mainFrame.dispose();
+            }
+        }
+
+        private boolean deleteReservation() {
+            String lab =  cancelField.getText();
+
+            String URL = callURL("http://localhost:8181/faulms/cancelRes/"+ lab);
+            System.out.println("\n============Output:============ \n" + URL);
+
+            return Boolean.parseBoolean(URL);
+        }
     }
     
     private JFrame mainFrame;
