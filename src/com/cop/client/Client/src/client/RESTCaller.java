@@ -42,6 +42,7 @@ public class RESTCaller {
             in.close();
         } catch (IOException e) {
                System.out.println(e);
+               return "false";
         }
 
         return sb.toString();

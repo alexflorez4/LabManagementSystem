@@ -5,10 +5,12 @@
  */
 package client.AdditionalPanel;
 
+import client.model.User;
+
 /**
  *
  * @author Carlos Guisao
  */
 public interface Panel {
-    void draw();
+    void draw(User user);
 }

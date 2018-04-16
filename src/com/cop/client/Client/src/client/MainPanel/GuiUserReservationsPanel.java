@@ -8,10 +8,7 @@ package client.MainPanel;
 import static client.RESTCaller.callURL;
 import client.model.LabDetails;
 import client.model.TableModel;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import client.model.User;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,26 +16,15 @@ import java.awt.GridLayout;
 import java.io.IOException;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import com.google.gson.JsonParser;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Carlos Guisao
@@ -67,7 +53,9 @@ public class GuiUserReservationsPanel implements Panel{
         } catch (IOException ex) {
             Logger.getLogger(GuiUserReservationsPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         panel.setBorder (BorderFactory.createTitledBorder 
+                
         (BorderFactory.createEtchedBorder (), "All Laboratories", TitledBorder.CENTER, TitledBorder.TOP, 
                 new Font("times new roman",Font.BOLD,20)));
 
@@ -85,6 +73,4 @@ public class GuiUserReservationsPanel implements Panel{
     }
     
     private final JPanel panel;
-    private DefaultListModel listModel;
-    private final JLabel label = new JLabel("All Laboratories");
 }

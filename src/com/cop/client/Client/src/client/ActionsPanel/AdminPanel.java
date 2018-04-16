@@ -6,6 +6,7 @@
 package client.ActionsPanel;
 
 import client.AdditionalPanel.PanelMaker;
+import client.model.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -21,8 +22,9 @@ import javax.swing.JPanel;
  */
 public class AdminPanel {
     
-    public AdminPanel(){
+    public AdminPanel(User user){
          this.panel = new JPanel();
+         this.user = user;
     }
     
     public JComponent show(){
@@ -68,7 +70,7 @@ public class AdminPanel {
       @Override
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();  
-            PanelMaker panelMaker = new PanelMaker();
+            PanelMaker panelMaker = new PanelMaker(user);
 
             switch (command) {
               case "Add Lab":
@@ -93,4 +95,5 @@ public class AdminPanel {
     }
     
     private final transient JPanel panel;
+    private final User user;
 }

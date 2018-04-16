@@ -5,6 +5,7 @@
  */
 package client.AdditionalPanel;
 
+import client.model.User;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -23,7 +24,7 @@ import javax.swing.JTextField;
 public class CancelReservation implements Panel{
     
     @Override
-    public void draw(){
+    public void draw(User user){
         mainFrame = new JFrame("Cancel Reservation");
         mainFrame.setPreferredSize(new Dimension(400, 300));
         Container content = mainFrame.getContentPane();

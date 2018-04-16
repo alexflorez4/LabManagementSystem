@@ -5,6 +5,8 @@
  */
 package client.AdditionalPanel;
 
+import static client.RESTCaller.callURL;
+import client.model.User;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -15,6 +17,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import com.github.lgooddatepicker.components.DatePicker;
+import com.github.lgooddatepicker.components.TimePicker;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,9 +34,10 @@ import javax.swing.JTextField;
 public class MakeReservation implements Panel{
     
     @Override
-    public void draw(){
+    public void draw(User user){
+        this.user = user;
         mainFrame = new JFrame("Make Reservation");
-        mainFrame.setPreferredSize(new Dimension(400, 300));
+        mainFrame.setPreferredSize(new Dimension(500, 300));
         Container content = mainFrame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
 
@@ -43,11 +55,13 @@ public class MakeReservation implements Panel{
         JButton submit = new JButton ("Submit");
 
         panel = new JPanel();
-        panel.setPreferredSize(new Dimension(200, 200));
-        loginTitle.setPreferredSize( new Dimension( 200, 50 ));
+        panel.setPreferredSize(new Dimension(300, 200));
         submit.setPreferredSize(new Dimension(200, 24));
+
         labField = new JTextField(lab);
-        dateField = new JTextField(date);
+        startTime = new TimePicker();
+        endTime = new TimePicker();
+        datePicker1 = new DatePicker();
         
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
@@ -62,22 +76,100 @@ public class MakeReservation implements Panel{
         panel.add(labField);
         
         panel.add(new JLabel("Date:"));
-        panel.add(dateField);
+        panel.add(datePicker1);
         
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
         
+        panel.add(new JLabel("Start Time:"));
+        panel.add(startTime);
+        
+        panel.add(new JLabel("End Time:"));
+        panel.add(endTime);
+        
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
+        
+        submit.addActionListener(new ButtonClickListener());
         submit.setActionCommand("Submit");
         panel.add(submit);
         
         return panel;
     }
     
+    private class ButtonClickListener implements ActionListener{
+      @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            String command = e.getActionCommand();  
+          try {
+              if(command.equals("Submit") && addReservation()){
+                  mainFrame.dispose();
+              }
+          } catch (ParseException ex) {
+              Logger.getLogger(MakeReservation.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+
+        private boolean addReservation() throws ParseException {
+            
+            String id = labField.getText();
+            String date = datePicker1.getText();
+            String start = startTime.getText();
+            String end = endTime.getText();
+            
+            start = hourFormater(start);
+            end = hourFormater(end);        
+            date = dateFormarter(date);
+
+            System.out.println("http://localhost:8181/faulms/newreserv/" + user.getName() + "/"
+                    + id + "/" + date + " " + start + "/" + date + " " + end);
+            
+            String URL = callURL("http://localhost:8181/faulms/newreserv/" + user.getName() + "/"
+                    + id + "/" + date + "%" + start + "/" + date + "%" + end);
+            System.out.println("\n============Output:============ \n" + URL);
+            
+            if(URL.equals("Success")){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        private String dateFormarter(String date) {
+            SimpleDateFormat dateFormater = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+            try{
+                java.util.Date t=dateFormater.parse(date);
+                dateFormater.applyPattern("yyyy-d-MM");
+                date = dateFormater.format(t);
+            } catch (ParseException ex) {
+                System.out.println(ex);
+            }
+            return date;
+        }
+
+        private String hourFormater(String hour) {
+            SimpleDateFormat Formater = new SimpleDateFormat("hh:mma");
+            try{
+                java.util.Date t = Formater.parse(hour);
+                Formater.applyPattern("HH:mm");
+                hour = Formater.format(t);
+            } catch (ParseException ex) {
+                System.out.println(ex);
+            }
+            return hour;
+        }
+    }
+    
     private JFrame mainFrame;
     private JPanel editorPanel;
     private JPanel panel;
     private JTextField labField;
-    private JTextField dateField;
-    private String date;
+    private DatePicker datePicker1;
+    private TimePicker startTime;
+    private TimePicker endTime;
     private String lab;
+    private User user;
 }

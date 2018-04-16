@@ -5,6 +5,7 @@
  */
 package client.ActionsPanel;
 
+import client.model.User;
 import javax.swing.JComponent;
 
 /**
@@ -13,9 +14,9 @@ import javax.swing.JComponent;
  */
 public class Dispatcher {
     
-    public Dispatcher(){
-        studentView = new StudentPanel();
-        adminView = new AdminPanel();
+    public Dispatcher(User user){
+        studentView = new StudentPanel(user);
+        adminView = new AdminPanel(user);
     }
     
     public JComponent dispatch(String request){

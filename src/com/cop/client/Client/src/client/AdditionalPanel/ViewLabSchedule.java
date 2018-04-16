@@ -5,6 +5,7 @@
  */
 package client.AdditionalPanel;
 
+import client.model.User;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -24,7 +25,7 @@ import javax.swing.JTextField;
 public class ViewLabSchedule implements Panel{
     
     @Override
-    public void draw(){
+    public void draw(User user){
         mainFrame = new JFrame("Lab Accomodations");
         mainFrame.setPreferredSize(new Dimension(500, 500));
         Container content = mainFrame.getContentPane();

@@ -5,10 +5,9 @@
  */
 package client.AdditionalPanel;
 
+import client.model.User;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
@@ -19,7 +18,7 @@ import javax.swing.JFrame;
 public class ViewMyReservation implements Panel{
     
     @Override
-    public void draw(){
+    public void draw(User user){
         mainFrame = new JFrame("View Lab Schedule");
         mainFrame.setPreferredSize(new Dimension(400, 300));
         Container content = mainFrame.getContentPane();

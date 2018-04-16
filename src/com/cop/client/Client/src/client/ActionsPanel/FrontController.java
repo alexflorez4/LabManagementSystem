@@ -5,6 +5,7 @@
  */
 package client.ActionsPanel;
 
+import client.model.User;
 import javax.swing.JComponent;
 
 /**
@@ -13,9 +14,9 @@ import javax.swing.JComponent;
  */
 public class FrontController {
     
-    public FrontController(){
+    public FrontController(User user){
 
-        dispatcher = new Dispatcher();
+        dispatcher = new Dispatcher(user);
     }
     
     private boolean isAuthenticUser(){

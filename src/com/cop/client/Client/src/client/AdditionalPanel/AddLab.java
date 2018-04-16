@@ -6,6 +6,7 @@
 package client.AdditionalPanel;
 
 import static client.RESTCaller.callURL;
+import client.model.User;
 import com.google.common.base.Strings;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -27,7 +28,7 @@ import javax.swing.JTextField;
 public class AddLab implements Panel{
     
     @Override
-    public void draw(){
+    public void draw(User user){
         mainFrame = new JFrame("Add Lab");
         mainFrame.setPreferredSize(new Dimension(400, 300));
         Container content = mainFrame.getContentPane();

@@ -24,7 +24,7 @@ public class GuiActionsPanel implements Panel{
     @Override
     public JComponent GetPanel(int x, int y){
 
-        FrontController front = new FrontController();
+        FrontController front = new FrontController(user);
 
         panel = (JPanel)front.dispatchRequest(user.getType());
 

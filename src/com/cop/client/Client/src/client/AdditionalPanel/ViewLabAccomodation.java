@@ -5,26 +5,35 @@
  */
 package client.AdditionalPanel;
 
+import static client.RESTCaller.callURL;
+import client.model.LabDetails;
+import client.model.User;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Carlos Guisao
  */
-public class ViewLabAccomodation implements Panel{
+public class ViewLabAccomodation implements Panel, ActionListener{
     
     @Override
-    public void draw(){
+    public void draw(User user){
         mainFrame = new JFrame("Lab Accomodations");
         mainFrame.setPreferredSize(new Dimension(500, 500));
         Container content = mainFrame.getContentPane();
@@ -42,7 +51,7 @@ public class ViewLabAccomodation implements Panel{
         mainFrame.setVisible(true);
     }
     
-    public JComponent getMainPanel(){
+    public JComponent getMainPanel() {
         
         JLabel loginTitle = new JLabel("Lab");
         JButton submit = new JButton ("Submit");
@@ -67,6 +76,9 @@ public class ViewLabAccomodation implements Panel{
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
         
+        //submit.addActionListener(new ButtonClickListener());
+        submit.addActionListener(this);
+        
         submit.setActionCommand("Submit");
         panel.add(submit);
         
@@ -77,18 +89,66 @@ public class ViewLabAccomodation implements Panel{
         
         JLabel DetailTitle = new JLabel("Lab Detail");
 
-        panel = new JPanel();
-        panel.setPreferredSize(new Dimension(300, 200));
+        panel2 = new JPanel();
+        panel2.setPreferredSize(new Dimension(300, 200));
         DetailTitle.setPreferredSize( new Dimension( 300, 50 ));
-        viewLabField = new JTextField(viewLab);
-        panel.setBackground(Color.WHITE);
+        panel2.setBackground(Color.WHITE);
         
-        return panel;
+        return panel2;
      }
+     
+    @Override
+     public void actionPerformed(ActionEvent e) {
+
+        String command = e.getActionCommand();  
+        if(command.equals("Submit")){
+            mainFrame.validate();
+            panel2.add(viewAccomation());
+            mainFrame.validate();
+            
+        }
+        
+    }
     
+    private JScrollPane viewAccomation() {
+        
+        String labID =  viewLabField.getText();
+        JScrollPane labListScrollPane = null;
+        String URL = callURL("http://localhost:8181/faulms/viewlabAcc/"+ labID);
+        System.out.println("\n============Output:============ \n" + URL);
+
+        try {
+
+        org.codehaus.jackson.map.ObjectMapper mapper = new org.codehaus.jackson.map.ObjectMapper();
+        lab = mapper.readValue(URL, LabDetails.class);
+        System.out.println("User = " + lab);
+
+        System.out.println("user.getName() = " + lab.getAccommodations());
+        labs = new DefaultListModel();
+
+        lab.getAccommodations().forEach((loopLab) -> {
+            labs.addElement(loopLab);
+            });
+
+        labList = new JList(labs);
+        
+        labListScrollPane = new JScrollPane(labList);
+        labListScrollPane.setPreferredSize(new Dimension(300, 200));
+
+        } catch (IOException e) {
+            return labListScrollPane;
+        }
+        
+        return labListScrollPane;
+    }
+     
     private JFrame mainFrame;
     private JPanel editorPanel;
     private JPanel panel;
+    private JPanel panel2;
     private JTextField viewLabField;
     private String viewLab;
+    private LabDetails lab;
+    private DefaultListModel labs;
+    private JList labList;
 }

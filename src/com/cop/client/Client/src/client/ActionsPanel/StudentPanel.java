@@ -6,6 +6,7 @@
 package client.ActionsPanel;
 
 import client.AdditionalPanel.PanelMaker;
+import client.model.User;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -21,8 +22,9 @@ import javax.swing.JPanel;
  */
 public class StudentPanel {
     
-    public StudentPanel(){
+    public StudentPanel(User user){
          this.panel = new JPanel();
+         this.user = user;
     }
     
     public JComponent show(){
@@ -67,7 +69,7 @@ public class StudentPanel {
       @Override
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();  
-            PanelMaker panelMaker = new PanelMaker();
+            PanelMaker panelMaker = new PanelMaker(user);
             
           switch (command) {
               case "View Lab Accmodations":
@@ -92,4 +94,5 @@ public class StudentPanel {
     }
     
     private final transient JPanel panel;
+    private final User user;
 }

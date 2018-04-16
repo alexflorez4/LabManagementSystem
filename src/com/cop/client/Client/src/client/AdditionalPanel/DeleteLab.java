@@ -6,6 +6,7 @@
 package client.AdditionalPanel;
 
 import static client.RESTCaller.callURL;
+import client.model.User;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -26,7 +27,7 @@ import javax.swing.JTextField;
 public class DeleteLab implements Panel{
     
     @Override
-    public void draw(){
+    public void draw(User user){
         mainFrame = new JFrame("Delete Lab");
         mainFrame.setPreferredSize(new Dimension(400, 300));
         Container content = mainFrame.getContentPane();

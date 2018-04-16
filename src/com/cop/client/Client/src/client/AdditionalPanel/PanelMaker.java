@@ -5,13 +5,15 @@
  */
 package client.AdditionalPanel;
 
+import client.model.User;
+
 /**
  *
  * @author Carlos Guisao
  */
 public class PanelMaker {
     
-    public PanelMaker(){
+    public PanelMaker(User user){
         viewMyReservation = new ViewMyReservation();
         makeReservation =  new MakeReservation();
         cancelReservation = new CancelReservation();
@@ -20,38 +22,39 @@ public class PanelMaker {
         addLab = new AddLab();
         cancelLab = new CancelLab();
         DeleteLab = new DeleteLab();
+        this.user = user;
     }
     
     public void drawViewRservation(){
-        viewMyReservation.draw();
+        viewMyReservation.draw(user);
     }
     
     public void drawMakeReservation(){
-        makeReservation.draw();
+        makeReservation.draw(user);
     }
     
     public void drawCancelRervation(){
-        cancelReservation.draw();
+        cancelReservation.draw(user);
     }
     
     public void drawViewLabSch(){
-        viewLabSchedule.draw();
+        viewLabSchedule.draw(user);
     }
     
     public void drawViewLabAcc(){
-        viewLabAccomodation.draw();
+        viewLabAccomodation.draw(user);
     }
     
     public void drawAddLab(){
-        addLab.draw();
+        addLab.draw(user);
     }
     
     public void drawCancelLab(){
-        cancelLab.draw();
+        cancelLab.draw(user);
     }
     
     public void drawDeleteLab(){
-        DeleteLab.draw();
+        DeleteLab.draw(user);
     }
     
     private final Panel viewMyReservation;
@@ -62,4 +65,5 @@ public class PanelMaker {
     private final Panel addLab;
     private final Panel cancelLab;
     private final Panel DeleteLab;
+    private final User user;
 }
