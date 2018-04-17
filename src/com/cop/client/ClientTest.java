@@ -23,12 +23,12 @@ public class ClientTest {
             //userService.createUser(new UserModel("Peter", "pet", "student", "1"));
             //userService.createUser(new UserModel("User4", "admin", "1"));
 
-            /*System.out.println("USers: ");
+            System.out.println("USers: ");
             List<UserModel> users = userService.getAllUsers();
             for(UserModel um : users){
                 System.out.println(um.toString());
             }
-            System.out.println("End of Users **");*/
+            System.out.println("End of Users **");
 
             // LAB
             LabService labService = (LabService)container.getBean(LabService.class);
