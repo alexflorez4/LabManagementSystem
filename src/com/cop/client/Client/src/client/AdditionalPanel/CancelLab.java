@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  *
  * @author Carlos Guisao
  */
-public class CancelLab implements Panel{
+public class CancelLab implements FacadePanel{
     
     @Override
     public void draw(User user){

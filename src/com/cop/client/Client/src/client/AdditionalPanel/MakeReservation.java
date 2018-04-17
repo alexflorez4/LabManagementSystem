@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  *
  * @author Carlos Guisao
  */
-public class MakeReservation implements Panel{
+public class MakeReservation implements FacadePanel{
     
     @Override
     public void draw(User user){

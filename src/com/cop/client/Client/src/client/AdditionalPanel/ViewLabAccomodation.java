@@ -30,7 +30,7 @@ import javax.swing.JTextField;
  *
  * @author Carlos Guisao
  */
-public class ViewLabAccomodation implements Panel, ActionListener{
+public class ViewLabAccomodation implements FacadePanel, ActionListener{
     
     @Override
     public void draw(User user){

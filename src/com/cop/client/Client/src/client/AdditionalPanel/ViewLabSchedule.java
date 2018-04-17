@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  *
  * @author Carlos Guisao
  */
-public class ViewLabSchedule implements Panel{
+public class ViewLabSchedule implements FacadePanel{
     
     @Override
     public void draw(User user){

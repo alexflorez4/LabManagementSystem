@@ -11,6 +11,6 @@ import client.model.User;
  *
  * @author Carlos Guisao
  */
-public interface Panel {
+public interface FacadePanel {
     void draw(User user);
 }

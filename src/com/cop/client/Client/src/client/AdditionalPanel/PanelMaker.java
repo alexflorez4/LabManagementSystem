@@ -57,13 +57,13 @@ public class PanelMaker {
         DeleteLab.draw(user);
     }
     
-    private final Panel viewMyReservation;
-    private final Panel makeReservation;
-    private final Panel cancelReservation;
-    private final Panel viewLabSchedule;
-    private final Panel viewLabAccomodation;
-    private final Panel addLab;
-    private final Panel cancelLab;
-    private final Panel DeleteLab;
+    private final FacadePanel viewMyReservation;
+    private final FacadePanel makeReservation;
+    private final FacadePanel cancelReservation;
+    private final FacadePanel viewLabSchedule;
+    private final FacadePanel viewLabAccomodation;
+    private final FacadePanel addLab;
+    private final FacadePanel cancelLab;
+    private final FacadePanel DeleteLab;
     private final User user;
 }

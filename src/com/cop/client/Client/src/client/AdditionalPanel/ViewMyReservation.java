@@ -15,7 +15,7 @@ import javax.swing.JFrame;
  *
  * @author Carlos Guisao
  */
-public class ViewMyReservation implements Panel{
+public class ViewMyReservation implements FacadePanel{
     
     @Override
     public void draw(User user){
