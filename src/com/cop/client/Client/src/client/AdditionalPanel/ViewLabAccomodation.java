@@ -104,7 +104,9 @@ public class ViewLabAccomodation implements Panel, ActionListener{
         if(command.equals("Submit")){
             mainFrame.validate();
             panel2.add(viewAccomation());
-            mainFrame.validate();
+            mainFrame.revalidate();
+            panel2.repaint();
+            panel.repaint();
             
         }
         
