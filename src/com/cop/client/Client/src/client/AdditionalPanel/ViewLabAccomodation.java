@@ -33,19 +33,15 @@ import javax.swing.JTextField;
 public class ViewLabAccomodation implements FacadePanel, ActionListener{
 
     public ViewLabAccomodation() {
-        this.mainFrame = new JFrame("Lab Accomodations");
+        this.mainFrame = new JFrame();
         this.editorPanel = new JPanel();
         this.panel = new JPanel();
         this.panel2 = new JPanel();
-        this.labs = new DefaultListModel();
-        this.labList = new JList(labs);
-        this.labListScrollPane = new JScrollPane(labList);
-        this.viewLabField = new JTextField(viewLab);
     }
     
     @Override
     public void draw(User user){
-        
+        mainFrame = new JFrame("Lab Accomodations");
         mainFrame.setPreferredSize(new Dimension(500, 500));
         Container content = mainFrame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
@@ -65,9 +61,11 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
         
         JLabel loginTitle = new JLabel("Lab");
         JButton submit = new JButton ("Submit");
-        
+
+        panel = new JPanel();
         panel.setPreferredSize(new Dimension(200, 200));
         loginTitle.setPreferredSize( new Dimension( 200, 50 ));
+        viewLabField = new JTextField(viewLab);
         
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
@@ -93,7 +91,7 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
         return panel;
     }
     
-    public JComponent getDetailPanel(){
+     public JComponent getDetailPanel(){
         
         JLabel DetailTitle = new JLabel("Lab Detail");
 
@@ -104,7 +102,7 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
      }
      
     @Override
-    public void actionPerformed(ActionEvent e) {
+     public void actionPerformed(ActionEvent e) {
 
         String command = e.getActionCommand();  
         if(command.equals("Submit")){
@@ -129,11 +127,15 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
         System.out.println("User = " + lab);
 
         System.out.println("user.getName() = " + lab.getAccommodations());
+        labs = new DefaultListModel();
 
         lab.getAccommodations().forEach((loopLab) -> {
             labs.addElement(loopLab);
             });
+
+        labList = new JList(labs);
         
+        labListScrollPane = new JScrollPane(labList);
         labListScrollPane.setPreferredSize(new Dimension(300, 200));
 
         } catch (IOException e) {
@@ -143,14 +145,14 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
         return labListScrollPane;
     }
      
-    private final JFrame mainFrame;
+    private JFrame mainFrame;
     private final JPanel editorPanel;
-    private final JPanel panel;
+    private JPanel panel;
     private final JPanel panel2;;
-    private final JScrollPane labListScrollPane;
-    private final JTextField viewLabField;
-    private final JList labList;
-    private final DefaultListModel labs;
+    private JTextField viewLabField;
     private String viewLab;
     private LabDetails lab;
+    private DefaultListModel labs;
+    private JList labList;
+    JScrollPane labListScrollPane;
 }
