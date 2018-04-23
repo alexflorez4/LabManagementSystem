@@ -31,15 +31,25 @@ import javax.swing.JTextField;
  * @author Carlos Guisao
  */
 public class ViewLabAccomodation implements FacadePanel, ActionListener{
+
+    public ViewLabAccomodation() {
+        this.mainFrame = new JFrame("Lab Accomodations");
+        this.editorPanel = new JPanel();
+        this.panel = new JPanel();
+        this.panel2 = new JPanel();
+        this.labs = new DefaultListModel();
+        this.labList = new JList(labs);
+        this.labListScrollPane = new JScrollPane(labList);
+        this.viewLabField = new JTextField(viewLab);
+    }
     
     @Override
     public void draw(User user){
-        mainFrame = new JFrame("Lab Accomodations");
+        
         mainFrame.setPreferredSize(new Dimension(500, 500));
         Container content = mainFrame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
-        editorPanel = new JPanel();
         editorPanel.add(getMainPanel());
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
@@ -55,11 +65,9 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
         
         JLabel loginTitle = new JLabel("Lab");
         JButton submit = new JButton ("Submit");
-
-        panel = new JPanel();
+        
         panel.setPreferredSize(new Dimension(200, 200));
         loginTitle.setPreferredSize( new Dimension( 200, 50 ));
-        viewLabField = new JTextField(viewLab);
         
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
@@ -85,29 +93,25 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
         return panel;
     }
     
-     public JComponent getDetailPanel(){
+    public JComponent getDetailPanel(){
         
         JLabel DetailTitle = new JLabel("Lab Detail");
 
-        panel2 = new JPanel();
         panel2.setPreferredSize(new Dimension(300, 200));
         DetailTitle.setPreferredSize( new Dimension( 300, 50 ));
         panel2.setBackground(Color.WHITE);
-        
         return panel2;
      }
      
     @Override
-     public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {
 
         String command = e.getActionCommand();  
         if(command.equals("Submit")){
-            mainFrame.validate();
+            if(labListScrollPane != null)
+                panel2.remove(labListScrollPane);
             panel2.add(viewAccomation());
-            mainFrame.revalidate();
-            panel2.repaint();
-            panel.repaint();
-            
+            panel2.revalidate();
         }
         
     }
@@ -115,7 +119,6 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
     private JScrollPane viewAccomation() {
         
         String labID =  viewLabField.getText();
-        JScrollPane labListScrollPane = null;
         String URL = callURL("http://localhost:8181/faulms/viewlabAcc/"+ labID);
         System.out.println("\n============Output:============ \n" + URL);
 
@@ -126,15 +129,11 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
         System.out.println("User = " + lab);
 
         System.out.println("user.getName() = " + lab.getAccommodations());
-        labs = new DefaultListModel();
 
         lab.getAccommodations().forEach((loopLab) -> {
             labs.addElement(loopLab);
             });
-
-        labList = new JList(labs);
         
-        labListScrollPane = new JScrollPane(labList);
         labListScrollPane.setPreferredSize(new Dimension(300, 200));
 
         } catch (IOException e) {
@@ -144,13 +143,14 @@ public class ViewLabAccomodation implements FacadePanel, ActionListener{
         return labListScrollPane;
     }
      
-    private JFrame mainFrame;
-    private JPanel editorPanel;
-    private JPanel panel;
-    private JPanel panel2;
-    private JTextField viewLabField;
+    private final JFrame mainFrame;
+    private final JPanel editorPanel;
+    private final JPanel panel;
+    private final JPanel panel2;;
+    private final JScrollPane labListScrollPane;
+    private final JTextField viewLabField;
+    private final JList labList;
+    private final DefaultListModel labs;
     private String viewLab;
     private LabDetails lab;
-    private DefaultListModel labs;
-    private JList labList;
 }
