@@ -127,7 +127,7 @@ public class MakeReservation implements FacadePanel{
                     + id + "/" + date + " " + start + "/" + date + " " + end);
             
             String URL = callURL("http://localhost:8181/faulms/newreserv/" + user.getName() + "/"
-                    + id + "/" + date + "%" + start + "/" + date + "%" + end);
+                    + id + "/" + date + "%20" + start + "/" + date + "%20" + end);
             System.out.println("\n============Output:============ \n" + URL);
             
             if(URL.equals("Success")){
@@ -142,7 +142,7 @@ public class MakeReservation implements FacadePanel{
             SimpleDateFormat dateFormater = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
             try{
                 java.util.Date t=dateFormater.parse(date);
-                dateFormater.applyPattern("yyyy-d-MM");
+                dateFormater.applyPattern("yyyy-MM-d");
                 date = dateFormater.format(t);
             } catch (ParseException ex) {
                 System.out.println(ex);
