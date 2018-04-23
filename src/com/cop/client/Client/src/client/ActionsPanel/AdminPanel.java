@@ -38,7 +38,8 @@ public class AdminPanel {
         JButton deleteLab = new JButton ("Delete Lab");
         JButton viewLabAcc = new JButton ("View Lab Accomodations");
         JButton labCancel = new JButton ("Cancel Lab");
-        JButton labReservation = new JButton ("Lab Reservation");
+        JButton viewUsers = new JButton ("View Users");
+        JButton createNewUser = new JButton ("Create New User");
         
         addLab.setPreferredSize(new Dimension(100, 24));
         deleteLab.setPreferredSize(new Dimension(100, 24));
@@ -49,19 +50,22 @@ public class AdminPanel {
         deleteLab.setActionCommand("Delete Lab");
         viewLabAcc.setActionCommand("View Lab Accomodations");
         labCancel.setActionCommand("Cancel Lab");
-        labReservation.setActionCommand("Lab Reservation");
+        viewUsers.setActionCommand("View Users");
+        createNewUser.setActionCommand("Create New User");
         
         addLab.addActionListener(new AdminPanel.ButtonClickListener());
         deleteLab.addActionListener(new AdminPanel.ButtonClickListener());
         viewLabAcc.addActionListener(new AdminPanel.ButtonClickListener());
         labCancel.addActionListener(new AdminPanel.ButtonClickListener());
-        labReservation.addActionListener(new AdminPanel.ButtonClickListener());
+        viewUsers.addActionListener(new AdminPanel.ButtonClickListener());
+        createNewUser.addActionListener(new AdminPanel.ButtonClickListener());
         
         panel.add(addLab);
         panel.add(deleteLab);
         panel.add(viewLabAcc);
         panel.add(labCancel);
-        panel.add(labReservation);
+        panel.add(viewUsers);
+        panel.add(createNewUser);
         
         return panel;
     }
@@ -85,8 +89,11 @@ public class AdminPanel {
               case "Cancel Lab":
                   panelMaker.drawCancelLab();
                   break;
-              case "Lab Reservation":
-                  panelMaker.drawMakeReservation();
+              case "View Users":
+                  panelMaker.drawViewAllUsers();
+                  break;
+              case "Create New User":
+                  panelMaker.drawCreateNewUser();
                   break;
               default:
                   break;

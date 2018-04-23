@@ -20,5 +20,4 @@ public class Client {
         // TODO code application logic here
         loginPanel login = new loginPanel();
     }
-    
 }

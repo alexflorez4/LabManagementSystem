@@ -22,6 +22,8 @@ public class PanelMaker {
         addLab = new AddLab();
         cancelLab = new CancelLab();
         DeleteLab = new DeleteLab();
+        viewAllUsers = new ViewAllUsers();
+        createNewUser = new CreateNewUser();
         this.user = user;
     }
     
@@ -57,6 +59,14 @@ public class PanelMaker {
         DeleteLab.draw(user);
     }
     
+    public void drawViewAllUsers(){
+        viewAllUsers.draw(user);
+    }
+    
+    public void drawCreateNewUser(){
+        createNewUser.draw(user);
+    }
+    
     private final FacadePanel viewMyReservation;
     private final FacadePanel makeReservation;
     private final FacadePanel cancelReservation;
@@ -65,5 +75,7 @@ public class PanelMaker {
     private final FacadePanel addLab;
     private final FacadePanel cancelLab;
     private final FacadePanel DeleteLab;
+    private final FacadePanel viewAllUsers;
+    private final FacadePanel createNewUser;
     private final User user;
 }

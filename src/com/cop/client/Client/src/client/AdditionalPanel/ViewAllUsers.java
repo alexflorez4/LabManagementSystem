@@ -3,58 +3,74 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client.MainPanel;
+package client.AdditionalPanel;
 
+import client.MainPanel.GuiUserReservationsPanel;
 import static client.RESTCaller.callURL;
-import client.model.LabDetails;
-import client.model.TableLabModel;
-import javax.swing.JScrollPane;
+import client.model.TableUserModel;
 import client.model.User;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.io.IOException;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+
 /**
  *
  * @author Carlos Guisao
  */
-public class GuiUserReservationsPanel implements Panel{
+public class ViewAllUsers implements FacadePanel{
 
-    public GuiUserReservationsPanel(User user) {
+    @Override
+    public void draw(User user) {
         this.panel = new JPanel();
+        mainFrame = new JFrame("View All Users");
+        mainFrame.setPreferredSize(new Dimension(500, 400));
+        Container content = mainFrame.getContentPane();
+        content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
+
+        editorPanel = new JPanel();
+        GetPanel(500, 400);
+        content.add(editorPanel);
+        mainFrame.add(panel);
+        
+        mainFrame.pack();
+        mainFrame.setVisible(true);
     }
     
-    @Override
     public JComponent GetPanel(int x, int y){
 
         panel.setPreferredSize(new Dimension(x, y));
         panel.setLayout(new GridLayout(0,1));
         panel.setBackground(Color.WHITE);
 
-    	TypeReference<List<LabDetails>> mapType = new TypeReference<List<LabDetails>>() {};
-    	List<LabDetails> jsonToPersonList = null;
-        String URL = "http://localhost:8181/faulms/getAllLabs/";
+    	TypeReference<List<User>> mapType = new TypeReference<List<User>>() {};
+    	List<User> jsonToPersonList = null;
+        String URL = "http://localhost:8181/faulms/getAllUsers/";
         jsonToPersonList = JSonList(jsonToPersonList, mapType, URL);
         
         panel.setBorder (BorderFactory.createTitledBorder 
                 
-        (BorderFactory.createEtchedBorder (), "All Laboratories", TitledBorder.CENTER, TitledBorder.TOP, 
+        (BorderFactory.createEtchedBorder (), "All Users", TitledBorder.CENTER, TitledBorder.TOP, 
                 new Font("times new roman",Font.BOLD,20)));
 
         JTable table = new JTable();
         table.setRowHeight(30);
-        TableLabModel model = new TableLabModel(jsonToPersonList);
+        TableUserModel model = new TableUserModel(jsonToPersonList);
         JScrollPane scrollPane = new JScrollPane(table);
         table.setModel(model);
         panel.add(scrollPane);
@@ -65,8 +81,8 @@ public class GuiUserReservationsPanel implements Panel{
         return panel;
     }
     
-    public static List<LabDetails> JSonList(List<LabDetails> jsonToPersonList
-            , TypeReference<List<LabDetails>> mapType, String URL) {
+    public static List<User> JSonList(List<User> jsonToPersonList
+            , TypeReference<List<User>> mapType, String URL) {
         
         ObjectMapper objectMapper = new ObjectMapper();
         URL = callURL(URL);
@@ -79,5 +95,9 @@ public class GuiUserReservationsPanel implements Panel{
         return jsonToPersonList;
     }
     
-    private final JPanel panel;
+    private JFrame mainFrame;
+    private JPanel editorPanel;
+    private JPanel panel;
 }
+    
+

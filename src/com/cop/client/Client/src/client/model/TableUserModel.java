@@ -12,13 +12,13 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Carlos Guisao
  */
-public class TableModel extends AbstractTableModel{
-    
-    List wordsList;
+public class TableUserModel extends AbstractTableModel{
+
+     List wordsList;
     String[] headerList = 
-            new String[] {"ID", "Name", "Location", "Accomodations"};
+            new String[] {"ID", "Name", "userID"};
     
-    public TableModel(List list) {
+    public TableUserModel(List list) {
         wordsList = list;
     }
     
@@ -29,23 +29,23 @@ public class TableModel extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
 
     @Override
     public Object getValueAt(int row, int column) {
-        LabDetails lab = new LabDetails();
-        lab = (LabDetails) wordsList.get(row);
+        User user = new User();
+        user = (User) wordsList.get(row);
         
         switch(column){
             case 0:
-                return lab.getId();
+                return user.getId();
             case 1:
-                return lab.getName();
+                return user.getName();
             case 2:     
-                return lab.getLocation();
-            case 3:
-                return lab.getAccommodations();
+                return user.getUserId();
+            //case 3:
+                //return user.getPassword();
             default:
                 return "";
         }
