@@ -37,7 +37,6 @@ public class StudentPanel {
         JButton labSchedule = new JButton ("View Lab Schedule");
         JButton labReserve = new JButton ("Reserve Lab");
         JButton labCancel = new JButton ("Cancel Reservation");
-        JButton labReservation = new JButton ("Lab Reservation");
         
         labAcc.setPreferredSize(new Dimension(100, 24));
         labSchedule.setPreferredSize(new Dimension(100, 24));
@@ -48,19 +47,16 @@ public class StudentPanel {
         panel.add(labSchedule);
         panel.add(labReserve);
         panel.add(labCancel);
-        panel.add(labReservation);
         
         labAcc.setActionCommand("View Lab Accmodations");
         labSchedule.setActionCommand("View Lab Schedule");
         labReserve.setActionCommand("Reserve Lab");
         labCancel.setActionCommand("Cancel Reservation");
-        labReservation.setActionCommand("Lab Reservation");
         
         labAcc.addActionListener(new StudentPanel.ButtonClickListener());
         labSchedule.addActionListener(new StudentPanel.ButtonClickListener());
         labReserve.addActionListener(new StudentPanel.ButtonClickListener());
         labCancel.addActionListener(new StudentPanel.ButtonClickListener());
-        labReservation.addActionListener(new StudentPanel.ButtonClickListener());
         
         return panel;
     }
@@ -83,9 +79,6 @@ public class StudentPanel {
                   break;
               case "Cancel Reservation":
                   panelMaker.drawCancelRervation();
-                  break;
-              case "Lab Reservation":
-                  panelMaker.drawMakeReservation();
                   break;
               default:
                   break;
